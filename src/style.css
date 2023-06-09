@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Anonymous Pro', monospace;
+    list-style: none;
+    text-decoration: none;
+    color: white;
+}
+
+body {
+    background-color: black;
+}
+
+#app-container {
+    margin: 120px auto;
+}
+
+.button-nft {
+    background-color: rebeccapurple;
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-nft:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+    transform: scale(1.1);
+}

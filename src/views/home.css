@@ -1,0 +1,91 @@
+#app-container {
+  background-image: url("../../public/nft/img/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+}
+
+.home-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-text {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.main-text h1 {
+  font-size: 5rem;
+  margin-bottom: 20px;
+}
+
+.main-text p {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.latest-collection {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.latest-collection h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.collection-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.collection-col {
+  flex: 0 0 calc(33.33% - 20px);
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: transform 330ms ease-in-out;
+}
+
+.collection-col:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.collection-col a {
+  display: block;
+  width: 100%;
+  color: black;
+}
+
+.collection-col img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.collection-col h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: black;
+}
+
+.collection-col p {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  color: black;
+}

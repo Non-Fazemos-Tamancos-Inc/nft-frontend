@@ -1,0 +1,56 @@
+.login-component {
+  padding: 100px;
+  margin: 0 auto;
+  max-width: 1000px;
+  background-color: black;
+  border: 3px solid #fff;
+  background-image: url("../../public/nft/img/login-background.jpg");
+  background-size: cover;
+  background-position: top;
+  color: white;
+  text-align: center;
+}
+
+.login-component form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-component h2 {
+  margin-bottom: 20px;
+}
+
+.login-component label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.login-component input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  margin-bottom: 20px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 400px;
+  color: black;
+}
+
+.login-component button[type="submit"] {
+  background-color: #fff;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.42s ease;
+}
+
+.login-component button[type="submit"]:hover {
+  background-color: blue;
+  color: white;
+}
