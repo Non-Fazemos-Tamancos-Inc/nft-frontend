@@ -1,4 +1,5 @@
 import React from 'react';
+import './footer.css';
 
 function Footer() {
     return (
@@ -17,9 +18,9 @@ function Footer() {
                     <div className="col">
                         <h3>Follow Us</h3>
                         <ul>
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="#">Instagram</a></li>
+                            <li><a href="https://www.facebook.com">Facebook</a></li>
+                            <li><a href="https://www.twitter.com">Twitter</a></li>
+                            <li><a href="https://www.instagram.com">Instagram</a></li>
                         </ul>
                     </div>
                     <div className="col">

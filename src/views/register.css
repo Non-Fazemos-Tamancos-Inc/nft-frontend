@@ -1,8 +1,8 @@
-#login {
+#register {
   padding: 50px;
 }
 
-.login-component {
+.register-component {
   padding: 100px;
   margin: 0 auto;
   max-width: 1000px;
@@ -14,24 +14,24 @@
   text-align: center;
 }
 
-.login-component form {
+.register-component form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.login-component h2 {
+.register-component h2 {
   margin-bottom: 20px;
 }
 
-.login-component label {
+.register-component label {
   display: block;
   margin-bottom: 10px;
   font-size: 16px;
 }
 
-.login-component input {
+.register-component input {
   padding: 10px;
   border-radius: 5px;
   border: none;
@@ -42,7 +42,7 @@
   color: black;
 }
 
-.login-component button[type="submit"] {
+.register-component button[type="submit"] {
   background-color: #fff;
   color: black;
   padding: 10px 20px;
@@ -53,7 +53,7 @@
   transition: all 0.42s ease;
 }
 
-.login-component button[type="submit"]:hover {
+.register-component button[type="submit"]:hover {
   background-color: blue;
   color: white;
 }

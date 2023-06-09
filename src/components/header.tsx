@@ -1,13 +1,15 @@
 import React from 'react';
 
+import './header.css';
+
 function Header() {
     return (
         <header>
-            <a href="#" className="logo"
-            ><img src="../../public/nft/img/LogotipoNFT.png" alt="logo nft aqui" srcSet=""
+            <a href="/store" className="logo"
+            ><img src="/img/LogotipoNFT.png" alt="logo nft aqui" srcSet=""
             /></a>
             <ul className="navmenu">
-                <li><a href="/home">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/store">Store</a></li>
                 <li><a href="/login">Login</a></li>
             </ul>
