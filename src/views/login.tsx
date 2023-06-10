@@ -16,7 +16,9 @@ function Login() {
                         <label htmlFor="password">Password</label>
                         <input type="password" id="password" name="password" required/>
                     </div>
+                    <a href="">Forgot my password</a> {/* Criar rota para página de esqueci a senha */}
                     <button type="submit">Login</button>
+                    <button id="create-button" type="button">Create an account</button>
                 </form>
             </div>
         </div>
