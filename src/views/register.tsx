@@ -5,11 +5,11 @@ import './register.css';
 function Register() {
     return (
         <div id="register">
-            <div className="register-component" style={{backgroundImage: `url(${process.env.PUBLIC_URL + '/img/register-background.jpg'})` }}>
+            <div className="register-component" style={{backgroundImage: `url(${process.env.PUBLIC_URL + '/img/login-background.jpg'})` }}>
                 <form>
-                    <h2>Register</h2>
+                    <h2>Sign Up</h2>
                     <div>
-                        <label htmlFor="email">Full Name</label>
+                        <label htmlFor="email">Full name</label>
                         <input type="text" id="name" name="name" required/>
                     </div>
                     <div>
@@ -20,10 +20,11 @@ function Register() {
                     <div>
                         <label htmlFor="password">Password</label>
                         <input type="password" id="password" name="password" required/>
-                        <label htmlFor="password">Repeat password</label>
+                        <label htmlFor="password">Repeat your password</label>
                         <input type="password" id="password" name="password" required/>
                     </div>
-                    <button type="submit">register</button>
+                    <button type="submit">Sign up</button>
+                    <button id="already-button" type="button">I already have an account.</button>
                 </form>
             </div>
         </div>

@@ -18,7 +18,7 @@ function Login() {
                     </div>
                     <a href="">Forgot my password</a> {/* Criar rota para página de esqueci a senha */}
                     <button type="submit">Login</button>
-                    <button id="create-button" type="button">Create an account</button>
+                    <button id="create-button" type="button">Sign up</button>
                 </form>
             </div>
         </div>
