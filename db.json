@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "rzimmerdev",
+      "email": "rzimmerdev",
+      "password_hash": "9e69e7e29351ad837503c44a5971edebc9b7e6d8601c89c284b1b59bf37afa80",
+      "name": "Rafael Zimmer"
+    },
+    {
+      "id": 2,
+      "username": "johndoe",
+      "email": "johndoe",
+      "password_hash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+      "name": "John Doe"
+    },
+    {
+      "id": 3,
+      "username": "janedoe",
+      "email": "janedoe",
+      "password_hash": "87aa4e6ae23ebf93e9b357cc34ce12a7f0708265b8128a3fa835d14649d7e083",
+      "name": "Jane Doe"
+    }
+  ]
+}

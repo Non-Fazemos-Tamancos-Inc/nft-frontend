@@ -83,3 +83,14 @@
   cursor: pointer;
   transition: all 0.42s ease;
 }
+
+.register-link {
+    color: white;
+    text-decoration: underline;
+}
+
+.register-link:hover {
+    color: mediumpurple !important;
+    cursor: pointer;
+    transition: all 0.42s ease;
+}
