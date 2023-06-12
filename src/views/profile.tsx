@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react';
 
+import { getCurrentUser } from './User';
+
 import './profile.css';
 import {useNavigate} from "react-router-dom";
 
