@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import API, {Status} from "../Api";
-import {getCurrentUser} from './User';
+import { getCurrentUser } from './User';
 
+import './form.css';
 import './login.css';
 
 function LoginForm() {
@@ -49,11 +50,11 @@ function LoginForm() {
                     <input type="password" id="password" name="password" required
                            onChange={e => setPassword(e.target.value)}/>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit" className={"btn-primary"}>Submit</button>
             </div>
             <div>
                 <p>Don't have an account yet? </p>
-                <a className={"register-link"}  href={"/register"}>Register now!</a>
+                <a className={"alternative-link"}  href={"/register"}>Register now!</a>
             </div>
             <div className={"form-error"}>{error}</div>
         </form>
@@ -61,13 +62,21 @@ function LoginForm() {
 }
 
 function Login() {
+    let [params] = useSearchParams();
+    const param = params.get("msg");
+    let msg = "";
+
+    if (param === "timeout") {
+        msg = "You have been logged out due to inactivity";
+    }
 
     return (
         <div id="login">
-            <div className="login-component"
+            <div className="form-component"
                  style={{backgroundImage: `url(${process.env.PUBLIC_URL + '/img/login-background.jpg'})`}}>
                 <LoginForm/>
             </div>
+            <div className={"msg-component"}>{msg}</div>
         </div>
     );
 }

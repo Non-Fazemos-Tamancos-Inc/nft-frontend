@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 10px;
 }
 
 .form-component h2 {
@@ -65,11 +66,11 @@
 
 .form-component .alternative-link {
     color: #fff;
-    background-color: black;
-    border: 2px solid white;
+    text-decoration: underline;
+    transition: all 0.42s ease;
 }
 
 .form-component .alternative-link:hover {
-    background-color: blue;
-    color: white;
+    color: lightgray;
+    scale: 1.2;
 }

@@ -20,6 +20,20 @@
       "email": "janedoe",
       "password_hash": "87aa4e6ae23ebf93e9b357cc34ce12a7f0708265b8128a3fa835d14649d7e083",
       "name": "Jane Doe"
+    },
+    {
+      "username": "Zimba",
+      "password_hash": "f15bdad45bd08951161d5b13e62f0634664941fd7a0b96a2109ebcfe9b670fe0",
+      "email": "zimba@gmail.com",
+      "name": "zimba",
+      "id": 5
+    },
+    {
+      "username": "Rafael Zimmer",
+      "password_hash": "d5ce2b19fbda14a25deac948154722f33efd37b369a32be8f03ec2be8ef7d3a5",
+      "email": "rzimmmer@e",
+      "name": "qq",
+      "id": 6
     }
   ]
 }

@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
-import UserData from './User';
+import UserData, { getCurrentUser } from './User';
 import API from "../Api";
 
 import './register.css';
 import './form.css';
+import { useNavigate } from "react-router-dom";
 
 function RegisterForm() {
     const [name, setName] = useState("");
@@ -12,6 +13,9 @@ function RegisterForm() {
     const [email, setEmail] = useState("");
     const [password1, setPassword1] = useState("");
     const [password2, setPassword2] = useState("");
+    const [error, setError] = useState("");
+
+    const navigate = useNavigate();
 
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
@@ -19,18 +23,36 @@ function RegisterForm() {
 
         // Validate email:
         if (!email.includes("@")) {
-            alert("Invalid email!");
+            setError("Invalid email!");
             return;
         }
 
         // Validate password:
         if (password1 !== password2) {
-            alert("Passwords don't match!");
+            setError("Passwords don't match!");
             return;
         }
 
-        API.register(user.username, password1, user.email, user.name);
+        API.exists(user.username)
+            .then(exists => {
+                if (exists) {
+                    setError("Username already exists!");
+                    return;
+                } else {
+                    API.register(user.username, password1, user.email, user.name)
+                        .then(response => response.json())
+                        .then(_ => {
+                            navigate("/login");
+                        });
+                }
+            })
     }
+
+    useEffect(() => {
+        if (getCurrentUser() !== null) {
+            navigate(`/profile`);
+        }
+    });
 
     return (
         <form onSubmit={handleSubmit}>
@@ -51,15 +73,18 @@ function RegisterForm() {
                 </div>
                 <div>
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password" name="password" required
+                    <input type="password" id="password1" name="password1" required
                            onChange={e => setPassword1(e.target.value)}/>
                     <label htmlFor="password">Repeat your password</label>
-                    <input type="password" id="password" name="password" required
+                    <input type="password" id="password2" name="password2" required
                            onChange={e => setPassword2(e.target.value)}/>
                 </div>
                 <button type="submit" className={"btn-primary"}>Sign up</button>
             </div>
-            <a href={"/login"}><button className={"btn-secondary login-link"} type="button">I already have an account.</button></a>
+            <a href={"/login"}>
+                <button className={"btn-secondary login-link"} type="button">I already have an account.</button>
+            </a>
+            <div className={"form-error"}>{error}</div>
         </form>
     )
 }

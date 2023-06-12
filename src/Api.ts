@@ -3,7 +3,6 @@ import Cookies from "universal-cookie";
 import UserData from "./views/User";
 
 enum Status {
-    OK,
     SUCCESS,
     FAILURE,
     AUTHENTICATION_ERROR,
@@ -41,14 +40,26 @@ class API {
     static async register(username: string, password: string, email: string, name: string) {
         let password_hash = sha256(password).toString();
 
-        return await fetch('/users/', {
-            method: 'POST', body: JSON.stringify({
+        return fetch('/users/', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
                 username: username,
                 password_hash: password_hash,
                 email: email,
                 name: name
             })
         });
+    }
+
+    static async exists(username: string) {
+        return fetch('/users/?username=' + username)
+            .then(response => response.json())
+            .then(data => {
+                return data.length > 0;
+            });
     }
 }
 

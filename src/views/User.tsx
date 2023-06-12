@@ -1,4 +1,3 @@
-import API, {Status} from "../Api";
 import Cookies from "universal-cookie";
 
 class UserData {
