@@ -1,4 +1,5 @@
 import Cookies from "universal-cookie";
+import NFT from "./NFT";
 
 class UserData {
     public name: string;
@@ -15,6 +16,21 @@ class UserData {
     }
 }
 
+class UserWallet {
+    public username: string;
+    public nfts: { [id: number]: NFT } = { };
+
+    constructor(username: string) {
+        this.username = username;
+    }
+
+    public addNFT(nft: NFT) {
+        if (nft.owner === this.username) {
+            this.nfts[nft.id] = nft;
+        }
+    }
+}
+
 function getCurrentUser(): UserData | null {
     const cookies = new Cookies();
     let session = cookies.get("session");
@@ -23,8 +39,13 @@ function getCurrentUser(): UserData | null {
         return null;
     } else {
         return session as UserData;
+
     }
 }
 
-export default UserData;
-export { getCurrentUser }
+function logoutUser() {
+    const cookies = new Cookies();
+    cookies.remove("session");
+}
+
+export {UserData, UserWallet, getCurrentUser, logoutUser}

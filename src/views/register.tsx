@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import UserData, { getCurrentUser } from './User';
+import { UserData, getCurrentUser } from '../User';
 import API from "../Api";
 
 import './register.css';

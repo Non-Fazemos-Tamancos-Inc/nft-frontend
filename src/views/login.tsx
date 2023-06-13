@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import API, {Status} from "../Api";
-import { getCurrentUser } from './User';
+import { getCurrentUser } from '../User';
 
 import './form.css';
 import './login.css';
@@ -21,6 +21,7 @@ function LoginForm() {
         login.then((response) => {
             if (response === Status.SUCCESS) {
                 navigate(`/profile`);
+                window.location.reload();
             } else if (response === Status.AUTHENTICATION_ERROR) {
                 setError("Invalid username or password");
             } else if (response === Status.NETWORK_ERROR) {
