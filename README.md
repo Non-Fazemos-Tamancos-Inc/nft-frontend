@@ -6,7 +6,7 @@
 - Daniel Henrique lelis de Almeida - 12543822
 - Rafael Zimmer - 12542612
 
-## Project Report - Milestone 2
+## Project Report
 
 For this milestone, we have implemented the client-side functionality of our application. The focus was on developing
 the user interface and integrating it with the required features outlined in Milestone 1.
@@ -126,36 +126,30 @@ To run the client-side functionality of the application, follow these steps:
 2. Open a terminal or command prompt and navigate to the project directory.
 3. Install the project dependencies by running the following command:
    ```
-   npm install
+   npm i
    ```
-4. Start the mockup API server by running the following command:
+4. Start the development server for the client-side application by running the following command:
    ```
-   json-server --watch db.json
-   ```
-   This will start the mock API server and load the data from the `db.json` file. The server will be accessible
-   at [http://localhost:3000](http://localhost:3000).
-5. In a separate terminal or command prompt, navigate to the project directory again.
-6. Start the development server for the client-side application by running the following command:
-   ```
-   npm start
+   npm run dev
    ```
    This will launch the application in development mode, and you can access it by
-   opening [http://localhost:3001](http://localhost:3001) in your browser.
+   opening [http://localhost:5173](http://localhost:5173) in your browser.
    The development server automatically reloads the page if you make any edits to the source code.
-7. To run the tests for the application, you can use the following command:
+5. To run the tests for the application, you can use the following command:
    ```
    npm test
    ```
    This will launch the test runner in interactive watch mode, allowing you to see the test results and re-run them as
    needed.
-8. If you want to build the application for production, you can use the following command:
+6. If you want to build the application for production, you can use the following command:
    ```
    npm run build
    ```
    This will create an optimized production build of the application in the `build` folder.
 
-Please ensure that both the mockup API server and the development server for the client-side application are running
-simultaneously to simulate the full functionality of the application.
+### Disclaimer
+
+**To access the admin panel, you need to directly access the URL: `/admin`, like <http://localhost:5371/admin>**
 
 ### Learn More
 
@@ -168,7 +162,4 @@ During the implementation of the client-side functionality, we focused on creati
 them with the required features. Some layout adjustments are still required to ensure optimal display on smaller
 devices, and we plan to make those changes in the subsequent milestones.
 
-We have used basic HTML and CSS for the wireframe implementation in the `prototype/` directory, and significant changes
-are expected as we progress further in the development process.
-
-
+Some of the API mocking was left behind, namely the ones of the admin pages.
