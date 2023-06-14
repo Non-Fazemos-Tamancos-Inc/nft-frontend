@@ -24,24 +24,26 @@ export function PayCard() {
 
         <form onSubmit={handleSubmit}>
           <div>
-            <div>
-              <label htmlFor="name">Full name</label>
-              <input type="text" required />
-            </div>
-            <div>
-              <label htmlFor="card number">Card Number</label>
-              <input type="text" required />
-            </div>
-            <div>
-              <label htmlFor="password">Password</label>
-              <input type="password" id="password1" name="password1" required />
-              <label htmlFor="password">Repeat your password</label>
-              <input type="password" id="password2" name="password2" required />
-            </div>
-            <button type="submit" className={'btn-primary'}>
-              Pay {value} USD
-            </button>
+            <label htmlFor="name">Full name</label>
+            <input type="text" required />
           </div>
+          <div>
+            <label htmlFor="card number">Card Number</label>
+            <input type="text" required />
+          </div>
+          <div className="splits">
+            <div>
+              <label htmlFor="cvv">CVV</label>
+              <input type="password" id="cvv" name="cvv" required />
+            </div>
+            <div>
+              <label htmlFor="expiry">Expiry</label>
+              <input type="text" id="expiry" name="expiry" required />
+            </div>
+          </div>
+          <button type="submit" className={'btn-primary'}>
+            Pay {value} USD
+          </button>
         </form>
       </div>
     </CustomerContainer>

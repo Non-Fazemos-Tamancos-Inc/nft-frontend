@@ -1,4 +1,4 @@
-import { NftCard } from '../../components/core/NftCard.tsx'
+import { NftCardMock } from '../../components/core/NftCardMock.tsx'
 import {
   CustomerContainer,
   CustomerNavElements,
@@ -16,13 +16,13 @@ export function Cart() {
         <h1>Your Cart</h1>
 
         <div className="products">
-          <NftCard idx={1} />
-          <NftCard idx={2} />
+          <NftCardMock idx={1} />
+          <NftCardMock idx={2} />
         </div>
         <div className="cart-description">
-          <h5>Item Values: {price} ETH</h5>
-          <h6>Conceptual Fee: {fee} ETH</h6>
-          <h6>Total Investment: {price + fee} ETH</h6>
+          <ItemValues>Item Values: {price} ETH</ItemValues>
+          <ItemFees>Conceptual Fee: {fee} ETH</ItemFees>
+          <ItemFees>Total Investment: {price + fee} ETH</ItemFees>
         </div>
         <Link to={'/cart/crypto'}>
           <button className="btn-primary" type="button">
@@ -45,4 +45,12 @@ const CentralizeAll = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+})
+
+const ItemValues = styled('p', {
+  fontWeight: 'bold',
+})
+
+const ItemFees = styled('p', {
+  fontSize: '0.75rem',
 })
