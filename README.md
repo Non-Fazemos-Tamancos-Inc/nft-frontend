@@ -158,8 +158,9 @@ information.
 
 ## Comments
 
-During the implementation of the client-side functionality, we focused on creating functional interfaces and integrating
-them with the required features. Some layout adjustments are still required to ensure optimal display on smaller
-devices, and we plan to make those changes in the subsequent milestones.
-
-Some of the API mocking was left behind, namely the ones of the admin pages.
+- During the implementation of the client-side functionality, we focused on creating functional interfaces and
+  integrating
+  them with the required features. Some layout adjustments are still required to ensure optimal display on smaller
+  devices, and we plan to make those changes in the subsequent milestones.
+- Some of the API mocking was left behind, namely the ones of the admin pages.
+- Some pages are still due to layout adjustments to better conform with the proposed design.
