@@ -5,7 +5,7 @@ import {
 
 export function Home() {
   return (
-    <CustomerContainer activePage={CustomerNavElements.HOME}>
+    <CustomerContainer activePage={CustomerNavElements.HOME} scoobyDoobyDoo>
       <div id="home">
         <section className="home-section">
           <div className="main-text">

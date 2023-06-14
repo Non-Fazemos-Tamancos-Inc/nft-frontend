@@ -1,4 +1,4 @@
-import '../../styles/common.css'
+import '../../styles/common.scss'
 
 import { styled } from '@stitches/react'
 import { ReactNode, useMemo } from 'react'
@@ -20,12 +20,14 @@ export interface CustomerContainerProps {
   activePage?: CustomerNavElements
   disableNav?: boolean
   children: ReactNode
+  scoobyDoobyDoo?: boolean
 }
 
 export function CustomerContainer({
   activePage,
   disableNav = false,
   children,
+  scoobyDoobyDoo = false,
 }: CustomerContainerProps) {
   const { user } = useAuth()
 
@@ -59,7 +61,7 @@ export function CustomerContainer({
   )
 
   return (
-    <Main>
+    <Main className={scoobyDoobyDoo ? 'scooby-doo' : ''}>
       <Header navItems={navItems} />
       <ContentContainer>{children}</ContentContainer>
     </Main>

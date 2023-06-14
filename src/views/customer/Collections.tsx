@@ -5,7 +5,7 @@ import {
 
 export function Collections() {
   return (
-    <CustomerContainer activePage={CustomerNavElements.COLLECTIONS}>
+    <CustomerContainer activePage={CustomerNavElements.COLLECTIONS} scoobyDoobyDoo>
       <div id="store">
         <section className="store-section">
           <div className="container">
