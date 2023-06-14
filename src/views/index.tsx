@@ -1,5 +1,11 @@
 import { Router } from './routes.tsx'
 
+import { AuthProvider } from '../hooks/useAuth.tsx'
+
 export function Index() {
-  return <Router />
+  return (
+    <AuthProvider>
+      <Router/>
+    </AuthProvider>
+  )
 }

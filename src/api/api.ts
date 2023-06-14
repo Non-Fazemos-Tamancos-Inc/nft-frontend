@@ -1,4 +1,4 @@
-import {NFTCollection, NFTItem, User, UserRole} from './types.ts'
+import { NFTCollection, NFTItem, User, UserRole } from './types.ts'
 
 export class ApiError extends Error {}
 
@@ -29,11 +29,11 @@ const fakeApi: FakeAPIData = {
     {
       _id: '3',
       name: 'Admin',
-      email: 'admin',
+      email: 'admin@example.com',
       password: 'admin',
       wallet: '0x1234567890',
       role: UserRole.Admin,
-    }
+    },
   ],
   collections: [
     {
@@ -58,7 +58,8 @@ const fakeApi: FakeAPIData = {
       collectionId: '1',
       name: 'NFT 1',
       image: 'https://picsum.photos/seed/1/200/300',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
       price: '0.69 ETH',
     },
     {
@@ -66,7 +67,8 @@ const fakeApi: FakeAPIData = {
       collectionId: '1',
       name: 'NFT 2',
       image: 'https://picsum.photos/seed/2/200/300',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
       price: '0.69 ETH',
     },
     {
@@ -74,7 +76,8 @@ const fakeApi: FakeAPIData = {
       collectionId: '1',
       name: 'NFT 3',
       image: 'https://picsum.photos/seed/3/200/300',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
       price: '0.69 ETH',
     },
     {
@@ -82,7 +85,8 @@ const fakeApi: FakeAPIData = {
       collectionId: '2',
       name: 'NFT 4',
       image: 'https://picsum.photos/seed/4/200/300',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
       price: '0.69 ETH',
     },
     {
@@ -90,7 +94,8 @@ const fakeApi: FakeAPIData = {
       collectionId: '2',
       name: 'NFT 5',
       image: 'https://picsum.photos/seed/5/200/300',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
       price: '0.69 ETH',
     },
     {
@@ -98,10 +103,11 @@ const fakeApi: FakeAPIData = {
       collectionId: '3',
       name: 'NFT 6',
       image: 'https://picsum.photos/seed/6/200/300',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl. Donec auctor, nisl eget ultricies ultrices, nunc nisl aliquam nunc, vitae aliquet nisl nunc vitae nisl.',
       price: '0.69 ETH',
-    }
-  ]
+    },
+  ],
 }
 
 function fakeDelay(ms: number): Promise<void> {
@@ -128,21 +134,48 @@ export async function logout(userId: string): Promise<void> {
   console.log(`Try to imagine we logging out the user: ${userId}.`)
 }
 
-export async function register(user: User): Promise<void> {
+export async function register(
+  name?: string,
+  email?: string,
+  password?: string,
+  wallet?: string,
+): Promise<User> {
   await fakeDelay(100)
 
-  const existingUser = fakeApi.users.filter((u) => u.email === user.email)[0]
-
-  if (existingUser) {
-    throw new ApiError(`User with email: ${user.email} already exists`)
+  if (!name) {
+    throw new ApiError(`Name is required`)
   }
 
-  user._id = Math.random().toString(36).slice(2, 6)
+  if (!email) {
+    throw new ApiError(`Email is required`)
+  }
+
+  if (!password) {
+    throw new ApiError(`Password is required`)
+  }
+
+  const existingUser = fakeApi.users.filter((u) => u.email === email)[0]
+
+  if (existingUser) {
+    throw new ApiError(`User with email: ${email} already exists`)
+  }
+
+  const _id = Math.random().toString(36).slice(2, 6)
+  const user: User = {
+    _id,
+    name,
+    email,
+    password,
+    wallet,
+    role: UserRole.Customer,
+  }
   fakeApi.users.push(user)
+  return user
 }
 
 export async function updateUser(
   id: string,
+  name?: string,
   email?: string,
   password?: string,
   wallet?: string,
@@ -153,6 +186,10 @@ export async function updateUser(
 
   if (!user) {
     throw new ApiError(`User with id: ${id} not found`)
+  }
+
+  if (name) {
+    user.name = name
   }
 
   if (email) {

@@ -6,9 +6,12 @@ import {
   CustomerNavElements,
 } from '../../components/container/CustomerContainer.tsx'
 import { Button, Form, FormContainer, FormLinkRow, Input } from '../../components/core/Form'
+import { useNoAuth } from '../../hooks/useAuth.tsx'
 
 // Main component
 export function Login() {
+  const { login } = useNoAuth()
+
   const [emailInput, setEmailInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const navigate = useNavigate()
@@ -21,9 +24,16 @@ export function Login() {
     setPasswordInput(e.target.value)
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const handleSubmit = (_e: FormEvent<HTMLFormElement>) => {
-    navigate('/home')
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    try {
+      await login(emailInput, passwordInput)
+      navigate('/profile')
+    } catch (err) {
+      console.error(err)
+      alert(`Login failed: ${err}`)
+    }
   }
 
   return (

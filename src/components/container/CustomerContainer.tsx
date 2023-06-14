@@ -4,6 +4,7 @@ import { styled } from '@stitches/react'
 import { ReactNode, useMemo } from 'react'
 
 import { Header, HeaderNavItem } from '../core/Header.tsx'
+import { useAuth } from '../../hooks/useAuth.tsx'
 
 /* eslint-disable no-unused-vars */
 export enum CustomerNavElements {
@@ -26,6 +27,8 @@ export function CustomerContainer({
   disableNav = false,
   children,
 }: CustomerContainerProps) {
+  const { user } = useAuth()
+
   const navItems: HeaderNavItem[] = useMemo(
     () =>
       disableNav
@@ -42,9 +45,9 @@ export function CustomerContainer({
               link: '/collections',
             },
             {
-              name: 'Login',
+              name: user ? 'Profile' : 'Login',
               active: activePage === CustomerNavElements.USER,
-              link: '/login',
+              link: user ? '/profile' : '/login',
             },
             {
               name: 'Cart',
