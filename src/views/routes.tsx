@@ -14,6 +14,10 @@ import { Login } from './customer/Login.tsx'
 import { Profile } from './customer/Profile.tsx'
 import { Register } from './customer/Register.tsx'
 import { NotFound } from './error/NotFound.tsx'
+import { Cart } from './customer/Cart.tsx'
+import { PayCard } from './customer/PayCard.tsx'
+import { PayCrypto } from './customer/PayCrypto.tsx'
+import { PurchaseConfirmation } from './customer/PurchaseConfirmation.tsx'
 
 export function Router() {
   return (
@@ -26,6 +30,10 @@ export function Router() {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/collections" element={<Collections />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart/card" element={<PayCard />} />
+        <Route path="/cart/crypto" element={<PayCrypto />} />
+        <Route path="/cart/confirmation" element={<PurchaseConfirmation />} />
 
         {/* Admin Routes */}
         <Route path="/admin" element={<Navigate to="/admin/login" replace />} />

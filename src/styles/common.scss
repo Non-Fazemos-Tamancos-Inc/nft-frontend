@@ -531,4 +531,129 @@
         box-shadow: 0 3px 15px rgba(0,0,0,0.3);
         transform: scale(1.1);
     }
+
+    /* Cart */
+    h1 {
+        padding: 30px;
+        text-decoration: underline;
+    }
+
+    div.cart-description {
+        margin: 20px auto;
+        width: 300px;
+        text-align: right;
+    }
+
+    button.btn-primary {
+        background-color: #fff;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.42s ease;
+        width: 300px;
+        margin-bottom: 20px;
+    }
+
+    button.btn-secondary {
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.42s ease;
+        width: 300px;
+        margin-bottom: 20px;
+    }
+
+    button.btn-primary:hover {
+        background-color: rebeccapurple !important;
+        color: white;
+    }
+
+    button.btn-secondary:hover {
+        background-color: white !important;
+        color: black;
+    }
+
+    /* NFT Card */
+
+    div.card {
+        margin: 20px auto;
+        width: 300px;
+    }
+
+    div.card img{
+        height: 140px;
+        width: 90px;
+    }
+
+    div.card h3{
+        margin-left: 10px;
+    }
+
+    /* Pay Credit */
+
+    div.payment-credit {
+        width: 500px;
+        margin: auto;
+    }
+
+    div.payment-credit {
+
+    }
+
+    div.payment-credit input {
+        background-color: transparent;
+        color: lightgrey;
+        border: 2px solid white;
+        padding: 10px;
+        font-size: 16px;
+        cursor: text;
+        width: 400px;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    /* Pay Crypto */
+
+    div.payment-crypto {
+        width: 500px;
+        margin: auto;
+    }
+
+    div.payment-crypto input {
+        background-color: transparent;
+        color: lightgrey;
+        border: 2px solid white;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: text;
+        width: 400px;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    div.payment-crypto img {
+        width: 350px;
+        margin: 20px auto;
+    }
+
+    /* Purchase */
+
+    div.finished {
+        height: 800px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    div.finished h1{
+        text-underline-offset: 9px;
+    }
 }
