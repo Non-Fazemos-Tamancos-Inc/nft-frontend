@@ -1,14 +1,15 @@
-import { NftCardMock } from '../../components/core/NftCardMock.tsx'
+import { styled } from '@stitches/react'
+import { Link } from 'react-router-dom'
+
 import {
   CustomerContainer,
   CustomerNavElements,
 } from '../../components/container/CustomerContainer.tsx'
-import { styled } from '@stitches/react'
-import { Link } from 'react-router-dom'
+import { NftCardMock } from '../../components/core/NftCardMock.tsx'
 
 export function Cart() {
-  let price = 0.4
-  let fee = 2.5
+  const price = 0.4
+  const fee = 2.5
 
   return (
     <CustomerContainer activePage={CustomerNavElements.CART} scoobyDoobyDoo>

@@ -1,13 +1,13 @@
+import { FormEvent, MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { updateUser } from '../../api/api.ts'
 import {
   CustomerContainer,
   CustomerNavElements,
 } from '../../components/container/CustomerContainer.tsx'
 import { Button, Form, FormContainer, Input } from '../../components/core/Form'
-import { FormEvent, MouseEvent } from 'react'
 import { useAuthRequired } from '../../hooks/useAuth.tsx'
-import { updateUser } from '../../api/api.ts'
 
 export function Profile() {
   const { user, logout } = useAuthRequired()

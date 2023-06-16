@@ -1,14 +1,15 @@
+import { FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
+
 import {
   CustomerContainer,
   CustomerNavElements,
 } from '../../components/container/CustomerContainer.tsx'
-import { useNavigate } from 'react-router-dom'
-import { FormEvent } from 'react'
 
 export function PayCard() {
   const navigate = useNavigate()
 
-  let value = '5657.00'
+  const value = '5657.00'
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()

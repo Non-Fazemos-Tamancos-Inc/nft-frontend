@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom'
+
 import {
   CustomerContainer,
   CustomerNavElements,
 } from '../../components/container/CustomerContainer.tsx'
 import { ActionButton } from '../../components/core/Listing.tsx'
-import { Link } from 'react-router-dom'
 
 export function PurchaseConfirmation() {
   return (

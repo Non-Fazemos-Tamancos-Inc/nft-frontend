@@ -4,8 +4,8 @@ import {
 } from '../../components/container/CustomerContainer.tsx'
 
 export function PayCrypto() {
-  let price = 2.9
-  let time = 30
+  const price = 2.9
+  const time = 30
 
   return (
     <CustomerContainer activePage={CustomerNavElements.CART} scoobyDoobyDoo>
