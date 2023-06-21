@@ -2,9 +2,10 @@ import { styled } from '@stitches/react'
 
 export interface NftCardProps {
   idx: number
+  onRemove?: (idx: number) => void
 }
 
-export function NftCardMock({ idx }: NftCardProps) {
+export function NftCardMock({ idx, onRemove = () => {} }: NftCardProps) {
   let name = `Pink Thingie #${idx}`
   let price = '0.2 ETH'
 
@@ -16,6 +17,7 @@ export function NftCardMock({ idx }: NftCardProps) {
         <CardInfoName>{name}</CardInfoName>
         <p>{price}</p>
       </CardInfo>
+      <RemoveAction onClick={() => onRemove(idx)}>Remove</RemoveAction>
     </CardContainer>
   )
 }
@@ -26,6 +28,8 @@ const CardContainer = styled('section', {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+
+  position: 'relative',
 
   padding: '1rem',
 })
@@ -45,4 +49,17 @@ const CardInfo = styled('div', {
 const CardInfoName = styled('p', {
   fontSize: '1.5rem',
   textDecoration: 'underline',
+})
+
+const RemoveAction = styled('span', {
+  fontSize: '0.8rem',
+  color: 'white',
+  cursor: 'pointer',
+  textDecoration: 'underline',
+
+  position: 'absolute',
+  bottom: 0,
+  right: 0,
+
+  transform: 'translate(-50%, -100%)',
 })

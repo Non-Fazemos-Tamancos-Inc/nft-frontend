@@ -1,12 +1,12 @@
 import { styled } from '@stitches/react'
 import { Link } from 'react-router-dom'
 
-export function NotFound() {
+export function NotFound({ admin = false }: { admin?: boolean }) {
   return (
     <Main>
       <Code>404</Code>
       <Description>Page not found</Description>
-      <Link to={'/'}>
+      <Link to={admin ? '/admin' : '/'}>
         <Button>Go back home</Button>
       </Link>
     </Main>
