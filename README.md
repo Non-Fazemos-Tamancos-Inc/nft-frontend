@@ -1,46 +1,166 @@
-# Getting Started with Create React App
+# Project Milestone 2: Client Functionality
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Group 11 - Members:**
 
-## Available Scripts
+- Adalton de Sena Almeida Filho - 12542435
+- Daniel Henrique lelis de Almeida - 12543822
+- Rafael Zimmer - 12542612
 
-In the project directory, you can run:
+## Project Report
 
-### `npm start`
+For this milestone, we have implemented the client-side functionality of our application. The focus was on developing
+the user interface and integrating it with the required features outlined in Milestone 1.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Description
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Our application is a NFT company that releases various "concept" collections for customers to purchase. The client-side
+functionality includes user registration and authentication, browsing and purchasing collections, managing the cart, and
+displaying sales statistics. We have implemented these features using HTML5, CSS3, and TypeScript, without integrating
+real blockchain functionalities. The frontend application is developed using the **React** framework.
 
-### `npm test`
+### Implemented Functionality
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. User Registration and Authentication:
 
-### `npm run build`
+    - Customers can create an account by providing their name, email address, password, and wallet address.
+    - Administrators can create new users, including other administrators, and manage existing users.
+    - User credentials are stored locally on the client-side for this milestone, using mock objects to simulate
+      server-side
+      functionality. The mockup of the backend API calls is built using the **json-server** package.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Collection Management:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    - Administrators can create, update, and delete collections.
+    - Each collection includes details such as name, description, picture, release date, and closing date.
+    - Computed information such as total items, items sold, and sold value is also displayed.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Collection Items:
 
-### `npm run eject`
+    - Administrators can manage the items within each collection, defining their names, prices, and blockchain
+      addresses.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+4. Buying Items:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    - Customers can add available NFTs to their cart and proceed to the checkout phase.
+    - At checkout, customers can choose to pay with crypto, where a payment address is provided, or pay with a credit
+      card
+      by entering their card information.
+    - Upon successful payment, customers are redirected to a success page, and the selected NFTs become unavailable.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+5. Sales and Statistics:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    - Users can track the store's market sales by viewing the store page and core metrics.
 
-## Learn More
+### Test Plan
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+We have conducted the following tests to ensure the functionality of the implemented features:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. User Registration and Authentication:
+
+    - Test user registration by providing valid and invalid input data, checking for appropriate error handling and
+      successful account creation.
+    - Test user login and authentication using both valid and invalid credentials.
+
+2. Collection Management:
+
+    - Test creating new collections with various input data and verifying their proper creation and display.
+    - Test updating existing collections, ensuring the changes are reflected correctly.
+    - Test deleting collections and confirming their removal from the system.
+
+3. Collection Items:
+
+    - Test adding new items to collections, validating the item details and their inclusion in the collection.
+    - Test updating item information and verifying the changes are correctly applied.
+    - Test removing items from collections and ensuring they are no longer associated with the collection.
+
+4. Buying Items:
+
+    - Test adding items to the cart and verifying their inclusion.
+    - Test the checkout process by simulating both crypto and credit card payments, ensuring the correct handling of
+      payment information and successful completion of the purchase.
+    - Validate that the purchased items are marked as sold and become unavailable for further purchase.
+
+5. Sales and Statistics:
+
+    - Verify the accuracy of sales information and core viewership metrics displayed for administrators.
+
+### Test Results
+
+The conducted tests yielded the following results:
+
+1. User Registration and Authentication:
+
+    - Registration and login processes were successful, and proper error handling was in place for invalid input or
+      authentication failures.
+
+2. Collection Management:
+
+    - Creation, updating, and deletion of collections worked as expected, with accurate display and persistence
+      of collection information.
+
+3. Collection Items:
+
+    - Adding, updating, and removing items within collections were functioning correctly, and the changes were reflected
+      in the system.
+
+4. Buying Items:
+
+    - Adding items to the cart and completing the checkout process worked without issues, both for crypto and credit
+      card payments.
+    - Purchased items were appropriately marked as sold and became unavailable for further purchase.
+
+5. Sales and Statistics:
+
+    - Sales information and core viewership metrics were displayed accurately for administrators.
+
+### Build Procedure
+
+Certainly! Here's the updated Build Procedure section with the addition of the `json-server` command to start the mockup
+API:
+
+### Build Procedure
+
+To run the client-side functionality of the application, follow these steps:
+
+1. Make sure you have Node.js installed on your machine.
+2. Open a terminal or command prompt and navigate to the project directory.
+3. Install the project dependencies by running the following command:
+   ```
+   npm i
+   ```
+4. Start the development server for the client-side application by running the following command:
+   ```
+   npm run dev
+   ```
+   This will launch the application in development mode, and you can access it by
+   opening [http://localhost:5173](http://localhost:5173) in your browser.
+   The development server automatically reloads the page if you make any edits to the source code.
+5. To run the tests for the application, you can use the following command:
+   ```
+   npm test
+   ```
+   This will launch the test runner in interactive watch mode, allowing you to see the test results and re-run them as
+   needed.
+6. If you want to build the application for production, you can use the following command:
+   ```
+   npm run build
+   ```
+   This will create an optimized production build of the application in the `build` folder.
+
+### Disclaimer
+
+**To access the admin panel, you need to directly access the URL: `/admin`, like <http://localhost:5371/admin>**
+
+### Learn More
+
+To learn more about React, you can refer to the official React documentation (https://reactjs.org/) for further
+information.
+
+## Comments
+
+- During the implementation of the client-side functionality, we focused on creating functional interfaces and
+  integrating
+  them with the required features. Some layout adjustments are still required to ensure optimal display on smaller
+  devices, and we plan to make those changes in the subsequent milestones.
+- Some of the API mocking was left behind, namely the ones of the admin pages.
+- Some pages are still due to layout adjustments to better conform with the proposed design.

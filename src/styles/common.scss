@@ -1,0 +1,669 @@
+.scooby-doo {
+    /* Footer */
+    footer {
+        background-color: #191919;
+        color: #ffffff;
+        padding: 60px 0;
+        font-family: Arial, sans-serif;
+    }
+
+    footer h3 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    footer ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    footer ul li {
+        margin-bottom: 10px;
+    }
+
+    footer ul li a {
+        color: #ffffff;
+    }
+
+    footer form {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    footer input[type="email"] {
+        padding: 10px;
+        border: none;
+        border-radius: 5px 0 0 5px;
+        width: 70%;
+        font-size: 1.1rem;
+        color: black;
+    }
+
+    footer button[type="submit"] {
+        background-color: rebeccapurple;
+        color: #ffffff;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1.1rem;
+    }
+
+    footer p {
+        font-size: 0.8rem;
+        margin-top: 20px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .col {
+        flex-basis: 33.33%;
+        padding: 0 20px;
+    }
+
+    /* Header */
+
+    .logo img {
+        max-width: 120px;
+        height: auto;
+    }
+
+    .navmenu {
+        display: flex;
+    }
+
+    .navmenu a {
+        color: white;
+        /* color: black; */
+        font-size: 16px;
+        text-transform: capitalize;
+        padding: 10px 20px;
+        font-weight: 400;
+        transition: all .42s ease;
+    }
+
+    .navmenu a:hover {
+        color: rebeccapurple;
+    }
+
+    .nav-icon {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-icon i {
+        margin-right: 20px;
+        color: white;
+        font-size: 20px;
+        font-weight: 400;
+        transition: all .42s ease;
+    }
+
+    .nav-icon i:hover {
+        transform: scale(1.3);
+        color: rebeccapurple;
+    }
+
+    .cart-itens {
+        color: white;
+        font-size: 20px;
+
+    }
+
+    /* Form */
+
+    .form-component form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .form-component h2 {
+        margin-bottom: 20px;
+    }
+
+    .form-component label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 16px;
+        text-align: left;
+    }
+
+    .form-component input {
+        padding: 10px;
+        border-radius: 5px;
+        border: solid 2px white;
+        background-color: transparent;
+        margin-bottom: 20px;
+        font-size: 16px;
+        min-width: 250px;
+        color: white;
+    }
+
+    .form-component button.btn-primary {
+        background-color: #fff;
+        color: black;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.42s ease;
+        width: 250px;
+        margin-bottom: 20px;
+    }
+
+    .form-component button.btn-secondary {
+        background-color: transparent;
+        color: white;
+        border: 2px solid black;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.42s ease;
+        width: 250px;
+        margin-bottom: 20px;
+    }
+
+    .form-component button.btn-primary:hover {
+        background-color: rebeccapurple !important;
+        color: white;
+    }
+
+    .form-component button.btn-secondary:hover {
+        background-color: white !important;
+        color: black;
+    }
+
+    .form-component .alternative-link {
+        color: #fff;
+        text-decoration: underline;
+        transition: all 0.42s ease;
+    }
+
+    .form-component .alternative-link:hover {
+        color: lightgray;
+        scale: 1.2;
+    }
+
+    /* Home */
+
+    .home-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main-text {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .main-text h1 {
+        font-size: 5rem;
+        margin-bottom: 20px;
+    }
+
+    .main-text p {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+
+    .latest-collection {
+        margin-top: 50px;
+        text-align: center;
+    }
+
+    .latest-collection h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .collection-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .collection-col {
+        flex: 0 0 calc(33.33% - 20px);
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        transition: transform 330ms ease-in-out;
+    }
+
+    .collection-col:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .collection-col a {
+        display: block;
+        width: 100%;
+        color: black;
+    }
+
+    .collection-col img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .collection-col h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        color: black;
+    }
+
+    .collection-col p {
+        font-size: 1rem;
+        margin-bottom: 10px;
+        line-height: 1.5;
+        color: black;
+    }
+
+    /* Login */
+
+    #login {
+        padding: 50px;
+    }
+
+    .msg-component {
+        padding: 10px;
+    }
+
+    /* Profile */
+
+    .profile {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #000;
+        color: #fff;
+    }
+
+    .profile h2 {
+        margin-bottom: 20px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .user-info {
+        margin-bottom: 30px;
+    }
+
+    .user-info h3 {
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .user-info form {
+        margin-bottom: 20px;
+    }
+
+    .user-info form div {
+        margin-bottom: 10px;
+    }
+
+    .user-info form label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #fff;
+    }
+
+    .user-info form input[type="text"],
+    .user-info form input[type="email"],
+    .user-info form input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #999;
+        border-radius: 4px;
+        background-color: #000;
+        color: #fff;
+    }
+
+    .user-info button[type="submit"],
+    .user-info button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: rebeccapurple;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .user-info button[type="submit"]:hover,
+    .user-info button:hover {
+        background-color: #993399;
+    }
+
+    .user-info div {
+        margin-bottom: 10px;
+    }
+
+    .user-info strong {
+        font-weight: bold;
+    }
+
+    .user-info button[type="submit"],
+    .user-info button {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .profile-img {
+        max-width: 200px;
+        margin-top: 10px;
+        display: block;
+        border: 1px solid #999;
+        border-radius: 4px;
+    }
+
+    .wallet-info {
+        background-color: #000;
+        padding: 20px;
+        border: 1px solid #999;
+        border-radius: 4px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .wallet-info h3 {
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .wallet-info p {
+        margin-bottom: 10px;
+        color: #fff;
+    }
+
+    .wallet-info h4 {
+        margin-bottom: 10px;
+        color: #fff;
+    }
+
+    .nft-info {
+        margin-bottom: 20px;
+        padding: 20px;
+        background-color: #222;
+        border: 1px solid #999;
+        border-radius: 4px;
+    }
+
+    .nft-info img {
+        max-width: 200px;
+        margin-top: 10px;
+        display: block;
+        border: 1px solid #999;
+        border-radius: 4px;
+    }
+
+
+    .logout-section {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .logout-section button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: rebeccapurple;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .logout-section button:hover {
+        background-color: #993399;
+    }
+
+    /* Register */
+
+    #register {
+        padding: 50px;
+    }
+
+    /* Store */
+
+    #market-price-graphs {
+        margin-top: 2rem;
+    }
+
+    .nft-sales {
+        flex-basis: 66%;
+    }
+
+    /* NFTs for Sale */
+
+    .nft-list {
+        list-style: none;
+        padding: 0;
+        margin-top: 2rem;
+    }
+
+    .nft-item {
+        display: flex;
+        flex-basis: 25%;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: gray;
+        margin: 0 10px 2rem 10px;
+        padding: 15px;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .nft-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .nft-item img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        margin-bottom: 1rem;
+        border-radius: 10px;
+    }
+
+    .nft-item h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .nft-item p {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Root */
+
+    .app-container {
+        margin-top: 110px;
+    }
+
+    #app-container {
+        margin: 120px auto;
+    }
+
+    .button-nft {
+        background-color: rebeccapurple;
+        color: #000000;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .button-nft:hover {
+        background-color: black;
+        color: white;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+        transform: scale(1.1);
+    }
+
+    /* Cart */
+    h1 {
+        padding: 30px;
+        text-decoration: underline;
+    }
+
+    div.cart-description {
+        margin: 20px auto;
+        width: 300px;
+        text-align: right;
+    }
+
+    button.btn-primary {
+        background-color: #fff;
+        color: black;
+        padding: 10px 20px;
+        border: none;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        width: 300px;
+        margin-bottom: 20px;
+    }
+
+    button.btn-secondary {
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        width: 300px;
+        margin-bottom: 20px;
+    }
+
+    button.btn-primary:hover {
+        opacity: 0.8;
+    }
+
+    button.btn-secondary:hover {
+        background-color: white !important;
+        color: black;
+    }
+
+    /* Pay Credit */
+
+    div.splits {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        flex: 1;
+    }
+
+    div.splits > * {
+        flex-basis: 48%;
+    }
+
+    div.payment-credit, div.payment-credit form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    div.payment-credit form > div {
+        width: 100%;
+    }
+
+    div.payment-credit label {
+        display: block;
+        margin: 12px 0;
+    }
+
+    div.payment-credit input {
+        background-color: transparent;
+        color: lightgrey;
+        border: 2px solid white;
+        padding: 10px;
+        font-size: 16px;
+        cursor: text;
+        width: 100%;
+        text-align: center;
+    }
+
+    div.payment-credit button {
+        margin-top: 24px;
+        padding: 1rem;
+        width: 100%;
+    }
+
+    /* Pay Crypto */
+
+    div.payment-crypto {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    div.payment-crypto input {
+        background-color: transparent;
+        color: lightgrey;
+        border: 2px solid white;
+        padding: 10px;
+        font-size: 16px;
+        cursor: text;
+        width: 400px;
+        text-align: center;
+        margin: 20px auto;
+    }
+
+    div.payment-crypto img {
+        width: 350px;
+        margin: 20px auto;
+    }
+
+    /* Purchase */
+
+    div.finished {
+        min-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    div.finished h1{
+        text-underline-offset: 9px;
+    }
+
+    button {
+        cursor: pointer;
+    }
+}
