@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 
-import { UserData, getCurrentUser } from '../User';
-import API from "../Api";
+import User, {UserData} from '../../api/User';
 
 import './register.css';
-import './form.css';
-import { useNavigate } from "react-router-dom";
+import '../form.css';
+import {useNavigate} from "react-router-dom";
 
 function RegisterForm() {
     const [name, setName] = useState("");
@@ -19,28 +18,25 @@ function RegisterForm() {
 
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        const user = new UserData(name, username, email, password1);
 
-        // Validate email:
         if (!email.includes("@")) {
             setError("Invalid email!");
             return;
         }
 
-        // Validate password:
         if (password1 !== password2) {
             setError("Passwords don't match!");
             return;
         }
 
-        API.exists(user.username)
-            .then(exists => {
-                if (exists) {
+        User.getUsers()
+            .then(users => {
+                if (username in users) {
                     setError("Username already exists!");
                     return;
                 } else {
-                    API.register(user.username, password1, user.email, user.name)
-                        .then(response => response.json())
+                    let new_user = new UserData(username, name, email);
+                    User.register(new_user, password1)
                         .then(_ => {
                             navigate("/login");
                         });
@@ -49,9 +45,11 @@ function RegisterForm() {
     }
 
     useEffect(() => {
-        if (getCurrentUser() !== null) {
-            navigate(`/profile`);
-        }
+        User.getData().then(user => {
+            if (typeof user === "object") {
+                navigate(`/profile`);
+            }
+        })
     });
 
     return (

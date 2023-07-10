@@ -1,32 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import {getCurrentUser, logoutUser, UserWallet} from '../User';
-import API from '../Api';
+import User, {UserData} from '../../api/User';
+import Wallet, {WalletData} from '../../api/Wallet';
 import {useNavigate} from 'react-router-dom';
 
 import './profile.css';
 
 function Profile() {
-    const [name, setName] = useState(getCurrentUser()?.name);
-    const [username] = useState(getCurrentUser()?.username);
-    const [email, setEmail] = useState(getCurrentUser()?.email);
-    const [password, setPassword] = useState('');
-    const [profileImg] = useState(getCurrentUser()?.profile_img);
+    const [name, setName] = useState("");
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [editMode, setEditMode] = useState(false);
-    const [wallet, setWallet] = useState<UserWallet | null>(null);
+    const [wallet, setWallet] = useState<WalletData | null>(null);
+    const [user, setUser] = useState<UserData | null>(null);
 
     const navigate = useNavigate();
 
-    const handleSubmit = (event: { preventDefault: () => void }) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+        let user = await User.getData();
 
-        // Perform update operations here, such as changing password, email, and name
-        // You can use the state values (name, email, password) to update the UserData object or make API calls
-
-        // Reset password field
-        setPassword('');
-
-        API.update_user(getCurrentUser()?.username, name, email, password).then(
-            response => {
+        if (user) {
+            setPassword('');
+            let updated_user = new UserData(username, name, email);
+            User.update(username, password, updated_user).then((response) => {
                 console.log(response);
                 // if (response) {
                 //     // Update the user's cookie
@@ -40,17 +37,19 @@ function Profile() {
                 //         cookies.set("session", user);
                 //     }
                 // }
-            }
-        )
+            });
+
+        }
+
 
         // Exit edit mode
         setEditMode(false);
     };
 
-    const handleLogout = (event: { preventDefault: () => void }) => {
+    const handleLogout = (event: React.MouseEvent) => {
         event.preventDefault();
 
-        logoutUser();
+        User.logout();
         navigate(`/login`);
         window.location.reload();
     };
@@ -59,29 +58,30 @@ function Profile() {
         setEditMode(!editMode);
     };
 
-    const getUserWallet = async () => {
-        let currentUser = getCurrentUser();
+    useEffect(() => {
+        User.getData().then(async (user) => {
+            if (typeof user === "object") {
+                setUser(user);
+                setName(user.name);
+                setEmail(user.email);
+                setUsername(user.username);
 
-        if (currentUser === null) {
-            navigate(`/login?msg=timeout`);
-        } else {
-            API.get_wallet(currentUser.username).then(response => {
-                if (response) {
-                    setWallet(response);
-                }
-            });
-        }
+                Wallet.get(user.username).then(wallet => {
+                    if (typeof wallet === "object") {
+                        setWallet(wallet);
+                    } else {
+                        console.log(wallet);
+                    }
+                });
+            }
+        })
+    }, [navigate]);
+
+    const handleNewNFT = () => {
     };
 
-    useEffect(() => {
-        let currentUser = getCurrentUser();
-
-        if (currentUser === null) {
-            navigate(`/login?msg=timeout`);
-        } else {
-            getUserWallet().then(() => {});
-        }
-    }, []);
+    const handleRemoveNFT = (nftId: string) => {
+    };
 
     return (
         <div className="profile">
@@ -134,7 +134,8 @@ function Profile() {
                 )}
 
                 <div>
-                    <strong>Profile Image:</strong> <img src={profileImg} alt="Profile" className="profile-img"/>
+                    <strong>Profile Image:</strong> <img src="/public/img/default-profile.png" alt="Profile"
+                                                         className="profile-img"/>
                 </div>
             </div>
             <div className="logout-section">
@@ -144,11 +145,11 @@ function Profile() {
                 <div className="wallet-info">
                     <h3>Wallet Information</h3>
 
-                    <p>Total Wallet in USD: {Object.keys(wallet.nfts).length}</p>
+                    <p>Total Wallet in USD: {Object.keys(wallet.individualNfts).length}</p>
 
                     <h4>Currently Owned NFTs:</h4>
                     <div>
-                        {Object.entries(wallet.nfts).map(([id, nft]) =>
+                        {Object.entries(wallet.individualNfts).map(([id, nft]) => (
                             <div key={id} className="nft-info">
                                 <div>
                                     <strong>Name:</strong> {nft.name}
@@ -169,14 +170,16 @@ function Profile() {
                                 <div>
                                     <img src={nft.img_path} alt="NFT" className="nft-image"/>
                                 </div>
+
+                                <button onClick={() => handleRemoveNFT(id)}>Remove NFT</button>
                             </div>
-                        )}
+                        ))}
                     </div>
+                    <button onClick={() => handleNewNFT()}>Add NFT</button>
                 </div>
             ) : null}
         </div>
     );
 }
-
 
 export default Profile;

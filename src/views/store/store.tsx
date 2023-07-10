@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -10,9 +10,10 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+import Nft, { NftData } from '../../api/Nft';
 
 import './store.css';
+import {faker} from "@faker-js/faker";
 
 ChartJS.register(
     CategoryScale,
@@ -25,6 +26,8 @@ ChartJS.register(
 );
 
 function Store() {
+    const [nfts, setNfts] = useState<any[]>([]);
+
     const options = {
         responsive: true,
         plugins: {
@@ -58,6 +61,19 @@ function Store() {
         ],
     };
 
+    useEffect(() => {
+        const fetchNfts = async () => {
+            try {
+                const nfts = await Nft.getNfts();
+                setNfts(nfts);
+            } catch (error) {
+                console.error('Error fetching NFTs');
+            }
+        };
+
+        fetchNfts();
+    }, []);
+
     return (
         <div id="store">
             <section className="store-section">
@@ -72,24 +88,14 @@ function Store() {
                         <div className="col nft-sales">
                             <h2>NFTs for Sale</h2>
                             <ul className="row nft-list">
-                                <li className="col nft-item">
-                                    <img src="/nft/shoe.jpg" alt="NFT 1"/>
-                                    <h3>THE Shoe</h3>
-                                    <p>Price: $50</p>
-                                    <button className="button-nft">BUY NOW</button>
-                                </li>
-                                <li className="col nft-item">
-                                    <img src="/nft/greek.jpg" alt="NFT 2"/>
-                                    <h3>Le Greek</h3>
-                                    <p>Price: $75</p>
-                                    <button className="button-nft">BUY NOW</button>
-                                </li>
-                                <li className="col nft-item">
-                                    <img src="/nft/painting.jpg" alt="NFT 3"/>
-                                    <h3>Mono Lisa</h3>
-                                    <p>Price: $100</p>
-                                    <button className="button-nft">BUY NOW</button>
-                                </li>
+                                {nfts.map((nft) => nft.on_market ? (
+                                    <li className="col nft-item" key={nft.id}>
+                                        <img src={"http://localhost:8080/" + nft.src} alt={`NFT ${nft.id}`} />
+                                        <h3>{nft.name}</h3>
+                                        <p>Price: ${nft.price}</p>
+                                        <button className="button-nft">BUY NOW</button>
+                                    </li>
+                                ) : null)}
                             </ul>
                         </div>
                     </div>

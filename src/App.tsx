@@ -1,14 +1,14 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
-import Header from './components/header';
-import Footer from './components/footer';
-import Home from './views/home';
-import Store from './views/store';
-import Cart from './views/cart';
-import Profile from './views/profile';
-import Login from './views/login';
-import Register from './views/register';
+import Header from './components/header/header';
+import Footer from './components/footer/footer';
+import Home from './views/home/home';
+import Store from './views/store/store';
+import Cart from './views/cart/cart';
+import Profile from './views/profile/profile';
+import Login from './views/login/login';
+import Register from './views/register/register';
 
 import './App.css';
 

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import API, {Status} from "../Api";
-import { getCurrentUser } from '../User';
+import User, { UserData } from '../../api/User';
+import Status from '../../api/Status';
 
-import './form.css';
+import '../form.css';
 import './login.css';
 
 function LoginForm() {
@@ -16,9 +16,7 @@ function LoginForm() {
 
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        let login = API.login(username, password);
-
-        login.then((response) => {
+        User.login(username, password).then((response) => {
             if (response === Status.SUCCESS) {
                 navigate(`/profile`);
                 window.location.reload();
@@ -33,9 +31,11 @@ function LoginForm() {
     }
 
     useEffect(() => {
-        if (getCurrentUser() !== null) {
-            navigate(`/profile`);
-        }
+        User.getData().then(user => {
+            if (user instanceof UserData) {
+                navigate(`/profile`);
+            }
+        })
     });
 
     return (
