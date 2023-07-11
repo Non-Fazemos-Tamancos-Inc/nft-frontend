@@ -6,11 +6,11 @@ import {
   CustomerNavElements,
 } from '../../components/container/CustomerContainer.tsx'
 import { Button, Form, FormContainer, Input } from '../../components/core/Form'
-import { useNoAuth } from '../../hooks/useAuth.tsx'
+import { useAuthenticationStore } from '../../store/AuthenticationStore.ts'
 
 // Main component
 export function Register() {
-  const { register } = useNoAuth()
+  const { register } = useAuthenticationStore(({ register }) => ({ register }))
   const navigate = useNavigate()
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

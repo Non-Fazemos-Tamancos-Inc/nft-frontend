@@ -1,16 +1,27 @@
+import { FormEvent, MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
+import { updateUser } from '../../api/users.ts'
 import {
   CustomerContainer,
   CustomerNavElements,
 } from '../../components/container/CustomerContainer.tsx'
 import { Button, Form, FormContainer, Input } from '../../components/core/Form'
-import { FormEvent, MouseEvent } from 'react'
-import { useAuthRequired } from '../../hooks/useAuth.tsx'
-import { updateUser } from '../../api/api.ts'
+import { useAuthenticationStore } from '../../store/AuthenticationStore.ts'
+import { useLoaderStore } from '../../store/LoaderStore.ts'
 
 export function Profile() {
-  const { user, logout } = useAuthRequired()
+  const { user, logout, refresh } = useAuthenticationStore(({ user, logout, refresh }) => ({
+    user,
+    logout,
+    refresh,
+  }))
+
+  const { addLoader, removeLoader } = useLoaderStore(({ addLoader, removeLoader }) => ({
+    addLoader,
+    removeLoader,
+  }))
 
   const navigate = useNavigate()
 
@@ -27,11 +38,21 @@ export function Profile() {
     const walletEl = e.currentTarget.elements.namedItem('wallet') as HTMLInputElement
 
     try {
-      await updateUser(user?._id, nameEl.value, emailEl.value, passwordEl.value, walletEl.value)
-      alert('Update successful')
+      addLoader('update-account')
+      await updateUser(
+        user?._id,
+        nameEl.value,
+        emailEl.value,
+        passwordEl.value || undefined,
+        walletEl.value || undefined,
+        true,
+      )
+      await refresh()
+      toast('Account updated', { type: 'success' })
     } catch (err) {
-      console.error(err)
-      alert(`Update failed: ${err}`)
+      toast(err?.toString() || 'Failed to update account', { type: 'error' })
+    } finally {
+      removeLoader('update-account')
     }
   }
 
@@ -41,9 +62,9 @@ export function Profile() {
     try {
       await logout()
       navigate('/login')
+      toast('Logged out', { type: 'success' })
     } catch (err) {
-      console.error(err)
-      alert(`Logout failed: ${err}`)
+      toast(err?.toString() || 'Failed to logout', { type: 'error' })
     }
   }
 

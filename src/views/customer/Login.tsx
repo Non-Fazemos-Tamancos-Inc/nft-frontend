@@ -1,16 +1,22 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 import {
   CustomerContainer,
   CustomerNavElements,
 } from '../../components/container/CustomerContainer.tsx'
 import { Button, Form, FormContainer, FormLinkRow, Input } from '../../components/core/Form'
-import { useNoAuth } from '../../hooks/useAuth.tsx'
+import { useAuthenticationStore } from '../../store/AuthenticationStore.ts'
+import { useLoaderStore } from '../../store/LoaderStore.ts'
 
 // Main component
 export function Login() {
-  const { login } = useNoAuth()
+  const { login } = useAuthenticationStore(({ login }) => ({ login }))
+  const { addLoader, removeLoader } = useLoaderStore(({ addLoader, removeLoader }) => ({
+    addLoader,
+    removeLoader,
+  }))
 
   const [emailInput, setEmailInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
@@ -28,11 +34,14 @@ export function Login() {
     e.preventDefault()
 
     try {
+      addLoader('login')
       await login(emailInput, passwordInput)
+      toast('Logged in', { type: 'success' })
       navigate('/profile')
     } catch (err) {
-      console.error(err)
-      alert(`Login failed: ${err}`)
+      toast(err?.toString() || 'An error occurred', { type: 'error' })
+    } finally {
+      removeLoader('login')
     }
   }
 

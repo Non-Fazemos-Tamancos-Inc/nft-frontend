@@ -54,6 +54,7 @@ export const Button = styled('button', {
   marginTop: '1.5rem',
   transition:
     'background-color 0.2s ease-in-out, color 0.2s ease-in-out, opacity 0.2s ease-in-out',
+  cursor: 'pointer',
 
   variants: {
     fill: {

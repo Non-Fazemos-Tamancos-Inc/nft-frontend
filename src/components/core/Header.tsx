@@ -53,6 +53,7 @@ const HeaderContainer = styled('header', {
   minHeight: 'rem',
   padding: '1rem 0.75rem',
   border: '1px solid white',
+  boxSizing: 'border-box',
 
   display: 'flex',
   flexDirection: 'row',

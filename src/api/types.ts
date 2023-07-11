@@ -6,25 +6,69 @@ export enum UserRole {
 /* eslint-enable no-unused-vars */
 
 export interface User {
-  _id?: string
+  _id: string
   name: string
   email: string
-  password: string
   wallet?: string
   role: UserRole
+  active: boolean
+  createdAt?: Date
+  updatedAt?: Date
 }
 
-export interface NFTCollection {
-  _id?: string
-  name: string
-  image: string
+export interface Upload {
+  _id: string
+  filename: string
+  uri: string
+  createdAt?: Date
 }
 
-export interface NFTItem {
-  _id?: string
+export interface NFT {
+  _id: string
   collectionId: string
   name: string
-  image: string
+  description?: string
+  image?: string
+  price: number
+  sold: boolean
+}
+
+/* eslint-disable no-unused-vars */
+export enum PurchaseStatus {
+  PENDING = 'PENDING',
+  COMPLETED = 'COMPLETED',
+  CANCELLED = 'CANCELLED',
+}
+/* eslint-enable no-unused-vars */
+
+export interface Purchase {
+  _id: string
+  nftId: string
+  userId: string
+  status: PurchaseStatus
+  sentAt?: Date
+  createdAt?: Date
+  updatedAt?: Date
+}
+
+export interface Collection {
+  _id: string
+  name: string
   description: string
-  price: string
+  image?: string
+  releaseDate?: Date
+
+  nfts?: NFT[]
+}
+
+export interface CreatePurchaseBody {
+  nfts?: string[]
+  paymentMethod?: string
+
+  cardInfo?: {
+    cardNumber: string
+    cardHolder: string
+    expirationDate: string
+    cvv: string
+  }
 }

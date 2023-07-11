@@ -3,8 +3,8 @@ import '../../styles/common.scss'
 import { styled } from '@stitches/react'
 import { ReactNode, useMemo } from 'react'
 
+import { useAuthenticationStore } from '../../store/AuthenticationStore.ts'
 import { Header, HeaderNavItem } from '../core/Header.tsx'
-import { useAuth } from '../../hooks/useAuth.tsx'
 
 /* eslint-disable no-unused-vars */
 export enum CustomerNavElements {
@@ -29,7 +29,9 @@ export function CustomerContainer({
   children,
   scoobyDoobyDoo = false,
 }: CustomerContainerProps) {
-  const { user } = useAuth()
+  const { user } = useAuthenticationStore(({ user }) => ({
+    user,
+  }))
 
   const navItems: HeaderNavItem[] = useMemo(
     () =>
@@ -57,7 +59,7 @@ export function CustomerContainer({
               link: '/cart',
             },
           ],
-    [activePage, disableNav],
+    [user, activePage, disableNav],
   )
 
   return (

@@ -1,23 +1,25 @@
 import { styled } from '@stitches/react'
 
+import { getURL } from '../../api/uploads.ts'
+
 export interface NftCardProps {
-  idx: number
-  onRemove?: (idx: number) => void
+  id: string
+  name: string
+  price: number
+  image?: string
+  onRemove?: (id: string) => void
 }
 
-export function NftCardMock({ idx, onRemove = () => {} }: NftCardProps) {
-  let name = `Pink Thingie #${idx}`
-  let price = '0.2 ETH'
-
+export function NftCartCard({ id, name, price, image, onRemove = () => {} }: NftCardProps) {
   return (
     <CardContainer>
-      <CardImage src="/assets/nft/animals.jpg" alt="nft image" />
+      <CardImage src={image ? getURL(image) : ''} alt="nft image" />
 
       <CardInfo>
         <CardInfoName>{name}</CardInfoName>
-        <p>{price}</p>
+        <p>{price} ETH</p>
       </CardInfo>
-      <RemoveAction onClick={() => onRemove(idx)}>Remove</RemoveAction>
+      <RemoveAction onClick={() => onRemove(id)}>Remove</RemoveAction>
     </CardContainer>
   )
 }

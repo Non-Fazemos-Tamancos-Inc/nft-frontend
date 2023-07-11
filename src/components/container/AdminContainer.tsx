@@ -35,7 +35,7 @@ export function AdminContainer({
             {
               name: 'Collections',
               active: activePage === AdminNavElements.COLLECTIONS,
-              link: '/admin/collections',
+              link: '/admin/collections.ts',
             },
             {
               name: 'Orders',
