@@ -150,7 +150,7 @@ export function ManageCollection() {
             {collection?.image && (
               <img src={getURL(collection.image)} alt="Collection Preview" />
             )}
-            <Input label="Image URL" name="image" type="file" accept="image/*" />
+            <Input label="Image" name="image" type="file" accept="image/*" />
           </ImagePreviewRow>
 
           <Button>{actionButtonText}</Button>

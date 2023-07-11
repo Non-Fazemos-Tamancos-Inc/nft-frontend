@@ -50,6 +50,9 @@ export interface Purchase {
   createdAt?: Date
   updatedAt?: Date
   price?: number
+
+  buyer?: User
+  nft?: NFT
 }
 
 export interface Collection {
