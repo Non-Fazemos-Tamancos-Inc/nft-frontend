@@ -10,7 +10,7 @@ export function getURL(uri: string): string {
 
 export interface UploadFileResponse {
   upload: {
-    id: string
+    _id: string
     filename: string
     uri: string
   }
@@ -20,11 +20,12 @@ export async function uploadFile(file: File): Promise<UploadFileResponse> {
   const formData = new FormData()
   formData.append('file', file)
 
-  return await apiCall(`/uploads`, {
-    method: 'POST',
-    body: formData,
-    headers: {
-      'Content-Type': 'multipart/form-data',
+  return await apiCall(
+    `/uploads`,
+    {
+      method: 'POST',
+      body: formData,
     },
-  })
+    false,
+  )
 }

@@ -1,4 +1,4 @@
-import { FormEvent, MouseEvent } from 'react'
+import { FormEvent, MouseEvent, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -25,6 +25,12 @@ export function Profile() {
 
   const navigate = useNavigate()
 
+  useEffect(() => {
+    if (user === null) {
+      navigate('/login')
+    }
+  }, [user, navigate])
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
@@ -44,7 +50,7 @@ export function Profile() {
         nameEl.value,
         emailEl.value,
         passwordEl.value || undefined,
-        walletEl.value || undefined,
+        walletEl.value || null,
         true,
       )
       await refresh()

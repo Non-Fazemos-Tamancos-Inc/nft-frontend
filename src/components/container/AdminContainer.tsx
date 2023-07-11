@@ -28,6 +28,11 @@ export function AdminContainer({
         ? []
         : [
             {
+              name: 'Home',
+              active: false,
+              link: '/',
+            },
+            {
               name: 'Users',
               active: activePage === AdminNavElements.USERS,
               link: '/admin/users',
@@ -35,7 +40,7 @@ export function AdminContainer({
             {
               name: 'Collections',
               active: activePage === AdminNavElements.COLLECTIONS,
-              link: '/admin/collections.ts',
+              link: '/admin/collections',
             },
             {
               name: 'Orders',

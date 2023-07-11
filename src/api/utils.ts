@@ -1,14 +1,26 @@
 import { tokenKey } from '../store/AuthenticationStore.ts'
 
-export class ApiError extends Error {}
+export class ApiError extends Error {
+  status?: number
+}
 
-export async function apiCall<T>(uri: string, init: RequestInit = {}): Promise<T> {
+export async function apiCall<T>(uri: string, init: RequestInit = {}, json = true): Promise<T> {
   const token = localStorage.getItem(tokenKey)
 
-  const headers = {
-    'Content-Type': 'application/json',
-    ...(token != null && { Authorization: `Bearer ${token}` }),
-    ...(init.headers != null && init.headers),
+  const headers = new Headers()
+
+  if (token != null) {
+    headers.set('Authorization', `Bearer ${token}`)
+  }
+
+  if (json) {
+    headers.set('Content-Type', 'application/json')
+  }
+
+  if (init.headers != null) {
+    for (const [key, value] of Object.entries(init.headers)) {
+      headers.set(key, value)
+    }
   }
 
   const response = await fetch(`${import.meta.env.VITE_API_HOST}${uri}`, {
@@ -17,7 +29,9 @@ export async function apiCall<T>(uri: string, init: RequestInit = {}): Promise<T
   })
 
   if (!response.ok) {
-    throw new ApiError(await errorMessage(response))
+    const err = new ApiError(await errorMessage(response))
+    err.status = response.status
+    throw err
   }
 
   return await response.json()

@@ -12,7 +12,7 @@ export interface AuthenticationStore {
   loading: boolean
 
   refresh: () => Promise<void>
-  login: (email: string, password: string) => Promise<void>
+  login: (email: string, password: string) => Promise<User>
   logout: () => Promise<void>
   register: (
     name: string,
@@ -44,7 +44,10 @@ export const useAuthenticationStore = create(
         } catch (error) {
           const errMsg = (error || '').toString()
 
-          if (errMsg === 'authentication failed') {
+          if (
+            errMsg === 'authentication failed' ||
+            (error instanceof ApiError && error.status === 401)
+          ) {
             localStorage.removeItem(tokenKey)
             set({ user: null })
 
@@ -64,6 +67,7 @@ export const useAuthenticationStore = create(
           const { user, token } = await login(email, password)
           localStorage.setItem(tokenKey, token)
           set({ user })
+          return user
         } finally {
           set({ loading: false })
         }

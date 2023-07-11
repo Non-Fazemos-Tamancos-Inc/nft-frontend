@@ -1,5 +1,9 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
+import { getCollectionById, getCollections, updateCollection } from '../../api/collections.ts'
+import { Collection, NFT } from '../../api/types.ts'
 import { AdminContainer, AdminNavElements } from '../../components/container/AdminContainer.tsx'
 import {
   ActionButton,
@@ -11,8 +15,110 @@ import {
   UserActionButton,
 } from '../../components/core/Listing.tsx'
 import { Table, Tbody, Td, Th, Thead, Tr } from '../../components/core/Table.tsx'
+import { useAdminRequired } from '../../hooks/useAdminRequired.ts'
+import { useLoaderStore } from '../../store/LoaderStore.ts'
+
+interface CollectionListingData extends Collection {
+  boughtItems: number
+  boughtValue: number
+  totalValue: number
+  released: boolean
+  nfts: NFT[]
+}
 
 export function CollectionListing() {
+  useAdminRequired()
+
+  const [collections, setCollections] = useState<CollectionListingData[] | null>(null)
+  const { addLoader, removeLoader } = useLoaderStore(({ addLoader, removeLoader }) => ({
+    addLoader,
+    removeLoader,
+  }))
+
+  useEffect(() => {
+    if (collections !== null) {
+      return
+    }
+
+    const loadCollections = async () => {
+      addLoader('load-collections')
+      try {
+        const data = await getCollections()
+
+        const filledCollections: CollectionListingData[] = []
+
+        for (const collection of data.collections) {
+          const resp = await getCollectionById(collection._id)
+
+          const nfts = resp.collection.nfts || []
+          const boughtItems = nfts.filter((nft) => nft.sold)
+
+          filledCollections.push({
+            ...resp.collection,
+            boughtItems: boughtItems.length,
+            boughtValue: boughtItems.reduce((acc, nft) => acc + nft.price, 0),
+            totalValue: nfts.reduce((acc, nft) => acc + nft.price, 0),
+            released: new Date(resp.collection.releaseDate || 0).getTime() <= Date.now(),
+            nfts,
+          })
+        }
+
+        setCollections(filledCollections)
+      } catch (err) {
+        toast(err?.toString() || 'An error occurred', { type: 'error' })
+      } finally {
+        removeLoader('load-collections')
+      }
+    }
+
+    loadCollections().then().catch(console.error)
+  }, [collections, addLoader, removeLoader])
+
+  const handleRelease = async (id: string, released: boolean) => {
+    const target = collections?.find((c) => c._id === id)
+
+    if (!target) {
+      return
+    }
+
+    addLoader(`release-collection-${id}`)
+
+    try {
+      const newDate = released ? new Date(1e13) : new Date()
+
+      const updatedCollection = await updateCollection(
+        id,
+        target.name,
+        target.description,
+        newDate.toString(),
+        target.image,
+      )
+
+      const newCollections =
+        collections?.map((c) => {
+          if (c._id === id) {
+            return {
+              ...c,
+              ...updatedCollection.collection,
+              released:
+                new Date(updatedCollection.collection.releaseDate || 0).getTime() <= Date.now(),
+            }
+          }
+
+          return c
+        }) || []
+
+      setCollections(newCollections)
+      toast(`Collection ${released ? 'released' : 'unreleased'} successfully`, {
+        type: 'success',
+      })
+    } catch (err) {
+      toast(err?.toString() || 'An error occurred', { type: 'error' })
+    } finally {
+      removeLoader(`release-collection-${id}`)
+    }
+  }
+
   return (
     <AdminContainer activePage={AdminNavElements.COLLECTIONS}>
       <Content>
@@ -38,15 +144,21 @@ export function CollectionListing() {
               </Tr>
             </Thead>
             <Tbody>
-              <CollectionRow
-                id={'1'}
-                name={'Some Collection'}
-                releaseDate={'2021-08-01'}
-                released={false}
-                soldItems={10}
-                totalItems={20}
-                soldValue={'0.6900 ETH'}
-              />
+              {collections?.map(
+                ({ _id, name, releaseDate, released, boughtItems, boughtValue }) => (
+                  <CollectionRow
+                    key={_id}
+                    id={_id}
+                    name={name}
+                    releaseDate={(releaseDate || 'Unknown').toString()}
+                    released={released}
+                    soldItems={boughtItems}
+                    totalItems={boughtItems}
+                    soldValue={`${boughtValue} ETH`}
+                    onRelease={handleRelease}
+                  />
+                ),
+              )}
             </Tbody>
           </Table>
         </TableContainer>
@@ -58,7 +170,6 @@ export function CollectionListing() {
 // Auxiliary Components
 
 interface CollectionRowProps {
-  key?: string
   id: string
   name: string
   releaseDate: string
@@ -66,10 +177,10 @@ interface CollectionRowProps {
   soldItems: number
   totalItems: number
   soldValue: string
+  onRelease: (id: string, released: boolean) => void | Promise<void>
 }
 
 const CollectionRow = ({
-  key,
   id,
   name,
   releaseDate,
@@ -77,8 +188,9 @@ const CollectionRow = ({
   soldItems,
   totalItems,
   soldValue,
+  onRelease,
 }: CollectionRowProps) => (
-  <Tr key={key}>
+  <Tr>
     <Td>{name}</Td>
     <Td>{releaseDate}</Td>
     <Td>{released ? 'Yes' : 'No'}</Td>
@@ -92,7 +204,7 @@ const CollectionRow = ({
       <Link to={`/admin/collections/${id}/nfts`}>
         <UserActionButton>Nfts</UserActionButton>
       </Link>
-      <UserActionButton className="danger">
+      <UserActionButton className="danger" onClick={() => onRelease(id, released)}>
         {released ? 'Unrelease' : 'Release'}
       </UserActionButton>
     </Td>

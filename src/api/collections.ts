@@ -1,4 +1,4 @@
-import { Collection, NFT } from './types.ts'
+import { Collection } from './types.ts'
 import { apiCall } from './utils.ts'
 
 export interface GetCollectionsResponse {
@@ -11,7 +11,6 @@ export async function getCollections(): Promise<GetCollectionsResponse> {
 
 export interface GetCollectionResponse {
   collection: Collection
-  nfts: NFT[]
 }
 
 export async function getCollectionById(id: string): Promise<GetCollectionResponse> {
@@ -42,8 +41,8 @@ export async function updateCollection(
   id: string,
   name: string,
   description: string,
-  image: string,
   releaseDate: string,
+  image?: string,
 ): Promise<UpdateCollectionResponse> {
   return await apiCall(`/api/collections/${id}`, {
     method: 'PUT',

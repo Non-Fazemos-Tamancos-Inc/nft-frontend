@@ -10,11 +10,12 @@ export async function register(
   name: string,
   email: string,
   password: string,
-  walletAddress?: string,
+  wallet?: string,
+  admin?: boolean,
 ): Promise<RegisterResponse> {
   return await apiCall(`/api/users/register`, {
     method: 'POST',
-    body: JSON.stringify({ name, email, password, walletAddress }),
+    body: JSON.stringify({ name, email, password, wallet, admin }),
   })
 }
 
@@ -44,15 +45,16 @@ export interface UpdateUserResponse {
 
 export async function updateUser(
   id: string,
-  name: string,
-  email: string,
+  name?: string,
+  email?: string,
   password?: string,
-  wallet?: string,
+  wallet?: string | null,
   active?: boolean,
+  admin?: boolean,
 ): Promise<UpdateUserResponse> {
   return await apiCall(`/api/users/${id}`, {
     method: 'PATCH',
-    body: JSON.stringify({ name, email, password, wallet, active }),
+    body: JSON.stringify({ name, email, password, wallet, active, admin }),
   })
 }
 
@@ -69,7 +71,7 @@ export interface DeactivateUserResponse {
 }
 
 export async function deactivateUser(id: string): Promise<DeactivateUserResponse> {
-  return await apiCall(`/api/users/${id}/deactivate`, { method: 'DELETE' })
+  return await apiCall(`/api/users/${id}/activate`, { method: 'DELETE' })
 }
 
 export interface ActivateUserResponse {

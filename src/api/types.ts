@@ -49,6 +49,7 @@ export interface Purchase {
   sentAt?: Date
   createdAt?: Date
   updatedAt?: Date
+  price?: number
 }
 
 export interface Collection {

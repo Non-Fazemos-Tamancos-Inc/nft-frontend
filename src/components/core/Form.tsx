@@ -31,6 +31,8 @@ export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 
 export interface CheckboxProps extends HTMLAttributes<HTMLButtonElement> {
   label?: string | ReactNode
+  name?: string
+  checked?: boolean
   labelProps?: HTMLAttributes<HTMLLabelElement>
   containerProps?: HTMLAttributes<HTMLDivElement>
 }
@@ -110,7 +112,13 @@ export function TextArea({ label, labelProps, containerProps = {}, ...props }: T
   )
 }
 
-export function Checkbox({ label, labelProps, containerProps = {}, ...props }: CheckboxProps) {
+export function Checkbox({
+  label,
+  labelProps,
+  name,
+  containerProps = {},
+  ...props
+}: CheckboxProps) {
   const checkboxId = useId()
 
   return (
@@ -118,7 +126,7 @@ export function Checkbox({ label, labelProps, containerProps = {}, ...props }: C
       <StyledCheckboxLabel htmlFor={checkboxId} {...labelProps}>
         {label}:
       </StyledCheckboxLabel>
-      <StyledCheckbox id={checkboxId} {...props}>
+      <StyledCheckbox name={name} id={checkboxId} {...props}>
         <BaseCheckbox.Indicator>
           <CheckIcon />
         </BaseCheckbox.Indicator>

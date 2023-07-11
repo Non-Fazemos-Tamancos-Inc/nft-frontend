@@ -45,6 +45,12 @@ export function Login() {
     }
   }
 
+  const handleForgotPassword = (e: FormEvent<HTMLAnchorElement>) => {
+    e.preventDefault()
+
+    toast('Well... remember it', { type: 'info' })
+  }
+
   return (
     <CustomerContainer activePage={CustomerNavElements.USER}>
       <FormContainer>
@@ -64,7 +70,9 @@ export function Login() {
             onChange={handlePasswordChange}
           />
           <FormLinkRow>
-            <a href="#">Forgot my password</a>
+            <a href="#" onClick={handleForgotPassword}>
+              Forgot my password
+            </a>
           </FormLinkRow>
           <Button>LOGIN</Button>
           <Button
