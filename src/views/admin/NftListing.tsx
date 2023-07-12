@@ -18,6 +18,7 @@ import {
 import { Table, Tbody, Td, Th, Thead, Tr } from '../../components/core/Table.tsx'
 import { useAdminRequired } from '../../hooks/useAdminRequired.ts'
 import { useLoaderStore } from '../../store/LoaderStore.ts'
+import { formatCurrency } from '../../utils/number.ts'
 
 export function NftListing() {
   useAdminRequired()
@@ -100,7 +101,7 @@ export function NftListing() {
                   collectionId={collectionId || ''}
                   name={name}
                   description={description || '-'}
-                  price={`${price} ETH`}
+                  price={`${formatCurrency(price)} ETH`}
                   sold={sold}
                   onDelete={handleDelete}
                 />

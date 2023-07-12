@@ -12,6 +12,7 @@ import {
 } from '../../components/container/CustomerContainer.tsx'
 import { Content, Title, TitleContainer } from '../../components/core/Listing.tsx'
 import { useLoaderStore } from '../../store/LoaderStore.ts'
+import { formatCurrency } from '../../utils/number.ts'
 
 export function Nfts() {
   const navigate = useNavigate()
@@ -73,7 +74,7 @@ export function Nfts() {
                 <ImagePlaceholder>No Image</ImagePlaceholder>
               )}
               <h5>{name}</h5>
-              <h6>{price} ETH</h6>
+              <h6>{formatCurrency(price)} ETH</h6>
             </NFTCardContainer>
           ))}
         </NFTGrid>

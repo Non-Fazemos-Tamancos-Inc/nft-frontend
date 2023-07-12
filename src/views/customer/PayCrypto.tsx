@@ -12,6 +12,7 @@ import {
 import { useLoginRequired } from '../../hooks/useLoginRequired.ts'
 import { useCartStore } from '../../store/CartStore.ts'
 import { useLoaderStore } from '../../store/LoaderStore.ts'
+import { formatCurrency } from '../../utils/number.ts'
 
 export function PayCrypto() {
   const navigate = useNavigate()
@@ -125,7 +126,7 @@ export function PayCrypto() {
       <div className="payment-crypto">
         <h1>Almost There</h1>
 
-        <h4>Now just transfer {price} ETH to the following address: </h4>
+        <h4>Now just transfer {formatCurrency(price)} ETH to the following address: </h4>
         <br />
         <h5>You have 30 minutes to complete your purchase! </h5>
 

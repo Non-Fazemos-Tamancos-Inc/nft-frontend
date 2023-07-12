@@ -13,6 +13,7 @@ import { NftCartCard } from '../../components/core/NftCartCard.tsx'
 import { useAuthenticationStore } from '../../store/AuthenticationStore.ts'
 import { useCartStore } from '../../store/CartStore.ts'
 import { useLoaderStore } from '../../store/LoaderStore.ts'
+import { formatCurrency } from '../../utils/number.ts'
 
 export function Cart() {
   const { user } = useAuthenticationStore(({ user }) => ({ user }))
@@ -73,7 +74,7 @@ export function Cart() {
         {nfts.length > 0 && (
           <>
             <div className="cart-description">
-              <ItemValues>Item Values: {price} ETH</ItemValues>
+              <ItemValues>Item Values: {formatCurrency(price)} ETH</ItemValues>
             </div>
             <Link to={user ? '/cart/crypto' : '/login'}>
               <button className="btn-primary" type="button">

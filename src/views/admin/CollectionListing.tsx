@@ -17,6 +17,7 @@ import {
 import { Table, Tbody, Td, Th, Thead, Tr } from '../../components/core/Table.tsx'
 import { useAdminRequired } from '../../hooks/useAdminRequired.ts'
 import { useLoaderStore } from '../../store/LoaderStore.ts'
+import { formatCurrency } from '../../utils/number.ts'
 
 interface CollectionListingData extends Collection {
   boughtItems: number
@@ -154,7 +155,7 @@ export function CollectionListing() {
                     released={released}
                     soldItems={boughtItems}
                     totalItems={boughtItems}
-                    soldValue={`${boughtValue} ETH`}
+                    soldValue={`${formatCurrency(boughtValue)} ETH`}
                     onRelease={handleRelease}
                   />
                 ),

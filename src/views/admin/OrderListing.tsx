@@ -19,6 +19,7 @@ import {
 import { Table, Tbody, Td, Th, Thead, Tr } from '../../components/core/Table.tsx'
 import { useAdminRequired } from '../../hooks/useAdminRequired.ts'
 import { useLoaderStore } from '../../store/LoaderStore.ts'
+import { formatCurrency } from '../../utils/number.ts'
 
 export function OrderListing() {
   useAdminRequired()
@@ -142,7 +143,7 @@ export function OrderListing() {
                   buyerAddress={buyer?.wallet || '?'}
                   acquisitionDate={createdAt ? new Date(createdAt).toLocaleDateString() : '?'}
                   sent={sentAt != null}
-                  price={`${price || 0} ETH`}
+                  price={`${formatCurrency(price)} ETH`}
                   onSend={handleSend}
                   onDelete={handleRefund}
                 />

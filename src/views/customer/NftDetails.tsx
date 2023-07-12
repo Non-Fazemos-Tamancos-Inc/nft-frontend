@@ -14,6 +14,7 @@ import { Button } from '../../components/core/Form.tsx'
 import { Content } from '../../components/core/Listing.tsx'
 import { useCartStore } from '../../store/CartStore.ts'
 import { useLoaderStore } from '../../store/LoaderStore.ts'
+import { formatCurrency } from '../../utils/number.ts'
 
 export function NftDetails() {
   const navigate = useNavigate()
@@ -75,7 +76,7 @@ export function NftDetails() {
     navigate('/cart')
   }
 
-  let buttonText = `PURCHASE: ${nft?.price || '?'} ETH`
+  let buttonText = `PURCHASE: ${formatCurrency(nft?.price)} ETH`
   if (isOnCart) {
     buttonText = 'ON CART'
   }

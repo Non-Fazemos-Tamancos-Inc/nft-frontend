@@ -12,6 +12,7 @@ import {
 import { useLoginRequired } from '../../hooks/useLoginRequired.ts'
 import { useCartStore } from '../../store/CartStore.ts'
 import { useLoaderStore } from '../../store/LoaderStore.ts'
+import { formatCurrency } from '../../utils/number.ts'
 
 export function PayCard() {
   const nameId = useId()
@@ -120,7 +121,7 @@ export function PayCard() {
             </div>
           </div>
           <button type="submit" className={'btn-primary'}>
-            Pay {price} ETH
+            Pay {formatCurrency(price)} ETH
           </button>
         </form>
       </div>
