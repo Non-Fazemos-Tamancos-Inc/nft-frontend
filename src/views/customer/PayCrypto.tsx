@@ -66,19 +66,21 @@ export function PayCrypto() {
           clear()
           toast.success('Purchase successful')
           navigate('/cart/confirmation')
+          if (intervalId) {
+            clearInterval(intervalId)
+          }
         } else if (status === PurchaseStatus.CANCELLED) {
           toast.warn('Purchase failed')
           navigate('/cart/failure')
+          if (intervalId) {
+            clearInterval(intervalId)
+          }
         } else {
           toast.info('Waiting for payment confirmation')
         }
       } catch (err) {
         toast.error(err?.toString() || 'An error occurred')
         navigate('/cart/failure')
-      } finally {
-        if (intervalId) {
-          clearInterval(intervalId)
-        }
       }
     }
 
