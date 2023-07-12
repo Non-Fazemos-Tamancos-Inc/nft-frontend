@@ -86,7 +86,6 @@ export function PayCard() {
       }
     } catch (err) {
       toast.error(err?.toString() || 'An error occurred')
-      navigate('/cart/failure')
     } finally {
       removeLoader('pay-card')
     }
