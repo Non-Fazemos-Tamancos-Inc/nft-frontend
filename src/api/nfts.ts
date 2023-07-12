@@ -1,4 +1,4 @@
-import { NFT } from './types.ts'
+import { Collection, NFT } from './types.ts'
 import { apiCall } from './utils.ts'
 
 export interface GetNFTsByCollectionResponse {
@@ -13,6 +13,7 @@ export async function getNFTsByCollection(
 
 export interface GetNFTResponse {
   nft: NFT
+  collection: Collection
 }
 
 export async function getNFTById(id: string): Promise<GetNFTResponse> {

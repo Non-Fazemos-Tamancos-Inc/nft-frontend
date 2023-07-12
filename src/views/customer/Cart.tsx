@@ -42,6 +42,11 @@ export function Cart() {
 
   const price = nfts.reduce((acc, nft) => acc + nft.price, 0)
 
+  const handleRemove = (id: string) => {
+    removeItem(id)
+    setNfts(nfts.filter((nft) => nft._id !== id))
+  }
+
   return (
     <CustomerContainer activePage={CustomerNavElements.CART} scoobyDoobyDoo>
       <CentralizeAll>
@@ -59,7 +64,7 @@ export function Cart() {
                   price={nft.price}
                   image={nft.image}
                   key={nft._id}
-                  onRemove={() => removeItem(nft._id)}
+                  onRemove={() => handleRemove(nft._id)}
                 />
               ))}
             </>

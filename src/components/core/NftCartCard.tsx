@@ -38,7 +38,9 @@ const CardContainer = styled('section', {
 
 const CardImage = styled('img', {
   height: '10rem',
-  marginRight: '.5rem',
+  marginRight: '1rem',
+
+  border: '2px solid white',
 })
 
 const CardInfo = styled('div', {
@@ -51,6 +53,7 @@ const CardInfo = styled('div', {
 const CardInfoName = styled('p', {
   fontSize: '1.5rem',
   textDecoration: 'underline',
+  marginBottom: '0.5rem',
 })
 
 const RemoveAction = styled('span', {

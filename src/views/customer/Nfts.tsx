@@ -1,9 +1,9 @@
 import { styled } from '@stitches/react'
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-import { getCollections } from '../../api/collections.ts'
+import { getCollectionById } from '../../api/collections.ts'
 import { Collection } from '../../api/types.ts'
 import { getURL } from '../../api/uploads.ts'
 import {
@@ -13,84 +13,90 @@ import {
 import { Content, Title, TitleContainer } from '../../components/core/Listing.tsx'
 import { useLoaderStore } from '../../store/LoaderStore.ts'
 
-export function Collections() {
+export function Nfts() {
   const navigate = useNavigate()
+  const { collectionId } = useParams()
 
-  const [collections, setCollections] = useState<Collection[] | null>(null)
+  const [collection, setCollection] = useState<Collection | null>(null)
   const { addLoader, removeLoader } = useLoaderStore(({ addLoader, removeLoader }) => ({
     addLoader,
     removeLoader,
   }))
 
   useEffect(() => {
-    const loadCollections = async () => {
-      addLoader('load-collections')
+    if (!collectionId) {
+      return
+    }
+
+    if (collection !== null) {
+      return
+    }
+
+    const loadCollection = async () => {
+      addLoader('load-collection')
       try {
-        const data = await getCollections()
-        setCollections(data.collections)
+        const data = await getCollectionById(collectionId)
+        setCollection(data.collection)
       } catch (e) {
-        toast.error('Failed to load collections')
+        toast.error('Failed to load collection')
+        navigate('/collections')
       } finally {
-        removeLoader('load-collections')
+        removeLoader('load-collection')
       }
     }
 
-    loadCollections().then().catch(console.error)
-  }, [addLoader, removeLoader])
+    loadCollection().then().catch()
+  }, [navigate, collection, setCollection, addLoader, removeLoader, collectionId])
 
-  const handleClick = (id: string, date: string | Date | undefined) => {
-    if (!date) {
+  const handleClick = (id: string, sold: boolean) => {
+    if (sold) {
       return
     }
 
-    const parsedDate = new Date(date)
-
-    if (parsedDate.getTime() > Date.now()) {
-      return
-    }
-
-    navigate(`/collections/${id}`)
+    navigate(`/collections/${collectionId}/${id}`)
   }
+
+  const nfts = collection?.nfts || []
 
   return (
     <CustomerContainer activePage={CustomerNavElements.COLLECTIONS}>
       <Content>
         <TitleContainer>
-          <Title>Collections</Title>
+          <Title>"{collection?.name || ''}" Collection</Title>
         </TitleContainer>
 
-        <CollectionGrid>
-          {collections?.map(({ _id, name, image, releaseDate }) => (
-            <CollectionCardContainer key={_id} onClick={() => handleClick(_id, releaseDate)}>
-              <NotAvailableIndicator date={releaseDate?.toString()} />
-              {(image && <img src={getURL(image)} alt="Collection Image" />) || (
+        <NFTGrid>
+          {nfts.map(({ _id, name, image, sold, price }) => (
+            <NFTCardContainer key={_id} onClick={() => handleClick(_id, sold)}>
+              <NotAvailableIndicator sold={sold} />
+              {(image && <img src={getURL(image)} alt="NFT Image" />) || (
                 <ImagePlaceholder>No Image</ImagePlaceholder>
               )}
               <h5>{name}</h5>
-            </CollectionCardContainer>
+              <h6>{price} ETH</h6>
+            </NFTCardContainer>
           ))}
-        </CollectionGrid>
+        </NFTGrid>
+
+        {nfts.length === 0 && <h3>No NFTs in this collection</h3>}
       </Content>
     </CustomerContainer>
   )
 }
 
-const NotAvailableIndicator = ({ date }: { date: string | undefined }) => {
-  const parsedDate = date ? new Date(date) : null
-
-  if (parsedDate && parsedDate.getTime() < Date.now()) {
+const NotAvailableIndicator = ({ sold }: { sold: boolean }) => {
+  if (!sold) {
     return null
   }
 
   return (
-    <CollectionNotAvailable>
-      <h3>Not Available</h3>
-      {parsedDate && <p>Available on {parsedDate.toLocaleDateString()}</p>}
-    </CollectionNotAvailable>
+    <NotAvailable>
+      <h3>Sold</h3>
+    </NotAvailable>
   )
 }
 
-const CollectionGrid = styled('div', {
+const NFTGrid = styled('div', {
   display: 'grid',
   gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
   gridGap: '1rem',
@@ -101,11 +107,11 @@ const CollectionGrid = styled('div', {
   width: '100%',
 })
 
-const CollectionCardContainer = styled('div', {
+const NFTCardContainer = styled('div', {
   margin: '0 auto',
   display: 'flex',
   width: '100%',
-  maxWidth: '300px',
+  maxWidth: '200px',
 
   flexDirection: 'column',
   position: 'relative',
@@ -119,14 +125,22 @@ const CollectionCardContainer = styled('div', {
 
   '& > h5': {
     marginTop: '0.5rem',
+
+    fontSize: '1.25rem',
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+
+  '& > h6': {
+    marginTop: '0.2rem',
     marginBottom: '0.5rem',
 
-    fontSize: '1.5rem',
-    textDecoration: 'underline',
+    fontSize: '.8rem',
+    textAlign: 'center',
   },
 })
 
-const CollectionNotAvailable = styled('div', {
+const NotAvailable = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',

@@ -1,13 +1,15 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+
+import { NotFound } from '../error/NotFound.tsx'
+
 import { AdminLogin } from './AdminLogin.tsx'
-import { UserListing } from './UserListing.tsx'
-import { ManageUser } from './ManageUser.tsx'
 import { CollectionListing } from './CollectionListing.tsx'
 import { ManageCollection } from './ManageCollection.tsx'
-import { NftListing } from './NftListing.tsx'
 import { ManageNft } from './ManageNft.tsx'
+import { ManageUser } from './ManageUser.tsx'
+import { NftListing } from './NftListing.tsx'
 import { OrderListing } from './OrderListing.tsx'
-import { NotFound } from '../error/NotFound.tsx'
+import { UserListing } from './UserListing.tsx'
 
 export const AdminRoutes = () => {
   return (

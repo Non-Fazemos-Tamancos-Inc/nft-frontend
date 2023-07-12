@@ -23,50 +23,9 @@ export function Home() {
               virtual and physical worlds like never before. Join us and be a part of something
               truly groundbreaking.
             </p>
-            <a href="/register">
+            <a href="/collections">
               <button className="button-nft">BECOME THE REVOLUTION</button>
             </a>
-          </div>
-          <div className="latest-collection">
-            <h2>Latest Collection</h2>
-            <div className="collection-row">
-              <div className="collection-col">
-                <a href="/store">
-                  <img src="/assets/nft/animals.jpg" alt="nft de bichinho rosa" />
-                </a>
-                <h3>Cute Thingies</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada,
-                  lacus nec commodo rhoncus, felis enim consequat ex, eget consequat nisi urna
-                  sed lorem.
-                </p>
-                <button className="button-nft">BUY NOW</button>
-              </div>
-              <div className="collection-col">
-                <a href="/store">
-                  <img src="/assets/nft/space.jpg" alt="nft de nave espacial" />
-                </a>
-                <h3>Space Odyssey</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada,
-                  lacus nec commodo rhoncus, felis enim consequat ex, eget consequat nisi urna
-                  sed lorem.
-                </p>
-                <button className="button-nft">BUY NOW</button>
-              </div>
-              <div className="collection-col">
-                <a href="/store">
-                  <img src="/assets/nft/fantasy.jpg" alt="nft de dragão" />
-                </a>
-                <h3>Fantasy Realm</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada,
-                  lacus nec commodo rhoncus, felis enim consequat ex, eget consequat nisi urna
-                  sed lorem.
-                </p>
-                <button className="button-nft">BUY NOW</button>
-              </div>
-            </div>
           </div>
         </section>
       </div>
