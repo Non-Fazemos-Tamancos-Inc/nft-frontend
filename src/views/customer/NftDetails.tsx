@@ -83,6 +83,8 @@ export function NftDetails() {
     buttonText = 'SOLD'
   }
 
+  const descriptionBlocks = (nft?.description || 'No description').split('\n')
+
   return (
     <CustomerContainer activePage={CustomerNavElements.COLLECTIONS}>
       <Content>
@@ -105,7 +107,9 @@ export function NftDetails() {
             </Button>
           </LeftContainer>
           <RightContainer>
-            <p>{nft?.description || 'No description'}</p>
+            {descriptionBlocks.map((block, index) => (
+              <p key={index.toString()}>{block}</p>
+            ))}
           </RightContainer>
         </DetailsContainer>
       </Content>
@@ -148,6 +152,9 @@ const DetailsContainer = styled('div', {
   display: 'flex',
   flex: 1,
   flexWrap: 'wrap',
+
+  maxWidth: '1000px',
+  margin: '0 auto',
 })
 
 const LeftContainer = styled('div', {
@@ -186,6 +193,8 @@ const RightContainer = styled('div', {
 
   '& p': {
     textAlign: 'justify',
+    textIndent: '2rem',
+    marginTop: '0.4rem',
   },
 
   '@media only screen and (max-width: 768px)': {
@@ -221,13 +230,12 @@ const NotAvailable = styled('div', {
 
 const ImageContainer = styled('div', {
   width: '100%',
-  height: '100%',
-  minHeight: '300px',
 
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
 
+  margin: 'auto 0',
   border: '2px solid white',
 })
 
