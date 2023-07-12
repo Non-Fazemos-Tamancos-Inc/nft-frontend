@@ -191,15 +191,13 @@ const OrderRow = ({
     <Td>{sent ? 'Yes' : 'No'}</Td>
     <Td>{price}</Td>
     <Td align="end">
+      <UserActionButton onClick={() => onSend(id, sent)}>
+        {sent ? 'Undo Send' : 'Send'}
+      </UserActionButton>
       {status === PurchaseStatus.COMPLETED && (
-        <>
-          <UserActionButton onClick={() => onSend(id, sent)}>
-            {sent ? 'Undo Send' : 'Send'}
-          </UserActionButton>
-          <UserActionButton className="danger" onClick={() => onDelete(id)}>
-            Refund
-          </UserActionButton>
-        </>
+        <UserActionButton className="danger" onClick={() => onDelete(id)}>
+          Refund
+        </UserActionButton>
       )}
     </Td>
   </Tr>
