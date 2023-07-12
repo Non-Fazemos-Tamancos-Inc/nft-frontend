@@ -136,7 +136,7 @@ const NftRow = ({
 }: NftRowProps) => {
   let truncatedDescription = description
   if (description.length > 40) {
-    truncatedDescription += description.substring(0, 40) + '...'
+    truncatedDescription = description.substring(0, 40) + '...'
   }
 
   return (
